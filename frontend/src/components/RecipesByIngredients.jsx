@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from 'axios';
 import '../App.css';
+import RecipeCard from './RecipeCard'; // Import the RecipeCard component
 
 function RecipesByIngredients() {
   const [recipe, setRecipe] = useState([]); // State to store multiple recipes
@@ -21,7 +22,7 @@ function RecipesByIngredients() {
   }
 
   return (
-    <div className="row">
+    <div className="search_bar">
       {/* Input bar for ingredients */}
       <input
         type="text"
@@ -38,33 +39,8 @@ function RecipesByIngredients() {
       {/* Recipe display */}
       {recipe.length > 0 && (
         <div className="recipes">
-          {recipe.slice(currentPage * 6, currentPage * 6 + 6).map((recipe, index) => ( // Display 6 recipes per page
-            <div key={index} className="recipe">
-              <div>
-                <div>
-                  <strong>Name:</strong>
-                  <a target="_blank" href={recipe?.sourceUrl}>
-                    {recipe?.title}
-                  </a>
-                </div>
-                <div className="recipe-content">
-                  {/* Image */}
-                  <img src={recipe?.image} alt={recipe?.title} />
-
-                  {/* Ingredients */}
-                  {recipe?.usedIngredients?.length > 0 && (
-                    <div className="ingredients">
-                      <strong>Ingredients Used:</strong>
-                      <ul>
-                        {recipe.usedIngredients.map((ingredient, i) => (
-                          <li key={i}>{ingredient.name}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
+          {recipe.slice(currentPage * 6, currentPage * 6 + 6).map((recipe, index) => (
+            <RecipeCard key={index} recipe={recipe} /> // Use RecipeCard component
           ))}
         </div>
       )}
