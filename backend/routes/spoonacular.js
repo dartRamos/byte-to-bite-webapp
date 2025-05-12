@@ -54,7 +54,7 @@ router.get('/RecipesByIngredients', async (req, res) => {
 
 
 
-// Function to fetch recipes based on recipe ID
+// Router to fetch recipes based on recipe ID
 // https://spoonacular.com/food-api/docs#Get-Recipe-Information
 router.get('/recipesById', async (req, res) => {
   // get the id parameter from the request URL
@@ -78,6 +78,25 @@ router.get('/recipesById', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch full recipe' });
   }
 })
+  
 
 
-module.exports = router;
+    // Route to get recipe info by ID
+router.get('/recipes/:id/info', async (req, res) => {
+  const recipeId = req.params.id;
+  const apiKey = process.env.SPOONACULAR_API_KEY;
+
+  try {
+    const response = await axios.get(`https://api.spoonacular.com/recipes/${recipeId}/analyzedInstructions`, {
+      params: { apiKey }
+    });
+
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error fetching recipe info:', error);
+    res.status(500).json({ error: 'Failed to fetch recipe info' });
+  }
+})
+
+
+module.exports = router
