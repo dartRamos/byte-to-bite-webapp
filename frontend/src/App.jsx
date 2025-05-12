@@ -1,58 +1,55 @@
-import './App.css'
-import TestData from './components/TestData'
-import { useEffect, useState } from 'react'
-
+import './App.css';
+import { useState } from 'react';
+import axios from 'axios';
 
 function App() {
+  const [recipeInfo, setRecipeInfo] = useState(null); // state to store recipe info
 
-  // State to store the list of recipes fetched from the backend
-  const [recipes, setRecipes] = useState([]);
-
-  // Async function to fetch recipe data from the backend API
-  async function getData() {
+  // Function to fetch recipe info from your backend
+  async function getRecipeInfo() {
+    const id = '649985'; // Replace with the actual recipe ID
     try {
-      // Fetching data from the backend server
-      const response = await fetch('http://localhost:8080/recipes')
-
-      // Check if the response is successful
-      if (!response.ok) {
-        throw new Error(`Response Status: ${response.status}`)
-      }
-
-      // Parse the response body as JSON
-      const data = await response.json();
-      // Return the parsed data
-      return data;
-    }
-
-    catch (error) {
-      // Log any errors that occurred during the fetch
-      console.log(`Error was received ${error}`)
+      // Fetch recipe instructions from your backend
+      const res = await axios.get(`http://localhost:8080/recipes/${id}/info`);
+      console.log("This is the response: ", res.data); // Log the response to see the instructions
+      setRecipeInfo(res.data); // Store recipe data
+    } catch (e) {
+      console.error('Error fetching recipe info:', e);
     }
   }
-  
-  // useEffect runs once when the component mounts (because of the empty dependency array)
-  useEffect(() => {
-    // Define an async function to fetch and set data
-    const fetchData = async () => {
-      const data = await getData();
-      setRecipes(data); // Store the fetched data in state
-    }
-    fetchData(); // Call the async function
-    
-  },[])
-
 
   return (
     <div>
       <h1 className="text-3xl font-bold text-blue-600">Welcome to Byte-to-Bite</h1>
-      <br/>
-      {/* Render the TestData component and pass recipes as a prop */}
-      {/* <TestData recipes={recipes} /> */}
-      
-    </div>
+      <br />
 
-  )
+      <button
+        onClick={getRecipeInfo}
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >
+        Get Recipe Info
+      </button>
+
+      {/* Render the recipe information */}
+      {recipeInfo && (
+      <div>
+        <h2 className="text-xl font-semibold mt-4">Recipe Steps:</h2>
+        <ul className="mt-2">
+          {recipeInfo.map((instructionSet, index) => (
+            <div key={index}>
+              <h3 className="font-bold">Recipe</h3>
+              <ol>
+                {instructionSet.steps.map((step, stepIndex) => (
+                  <li key={stepIndex}>{step.step}</li>
+                ))}
+              </ol>
+            </div>
+          ))}
+        </ul>
+      </div>
+)}
+    </div>
+  );
 }
 
-export default App
+export default App;
