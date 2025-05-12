@@ -1,12 +1,20 @@
-import React from "react";
+import React, {useState} from "react";
 import '../App.css';
+import axios from "axios";
+
 
 function RecipeCard({ recipe }) {
+  const [selectedRecipeId, setSelectedRecipeId] = useState(null);
 
   const handleViewRecipe = async () => {
     try {
       // Call the backend API with the recipe ID
-      const response = await axios.get(`http://localhost:8080/api/recipes/${recipe.id}`)
+      // store the ID in state *after* the call, if needed for later
+      const response = await axios.get(`http://localhost:8080/api/spoonacular/recipesById?id=${recipe.id}`)
+
+      // store the ID in state *after* the call, if needed for later
+      setSelectedRecipeId(recipe.id);
+
 
       //console logging the data for debugging
       console.log("Full recipe data:", response.data)

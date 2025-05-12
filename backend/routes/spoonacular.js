@@ -1,3 +1,4 @@
+const axios = require('axios'); 
 const express = require('express');
 const router = express.Router();
 const Spoonacular = require('spoonacular');
@@ -53,6 +54,31 @@ router.get('/RecipesByIngredients', async (req, res) => {
 
 
 
+// Function to fetch recipes based on recipe ID
+// https://spoonacular.com/food-api/docs#Get-Recipe-Information
+router.get('/recipesById', async (req, res) => {
+  // get the id parameter from the front end
+  const recipeId = req.query.id;
+
+  // If no ID is provided, return a 400 (Bad Request) error
+  if(!recipeId) {
+    return res.status(400).json({ error: 'Recipe ID is required' });
+  }
+
+  //make a request to spoonacular api with the id 
+  try {
+    const response = await axios.get(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${process.env.SPOONACULAR_API_KEY}`);
+
+    res.json(response.data);
+    console.log("Recipe data:" , response.data);
+  } catch (error) {
+    console.error('Error fetching full recipe from Spoonacular:', error.message);
+    res.status(500).json({ error: 'Failed to fetch full recipe' });
+
+  }
+
+
+})
 
 
 
