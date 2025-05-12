@@ -15,14 +15,11 @@ function RecipesByIngredients() {
         params: { ingredients } // Pass ingredients as query parameters
       });
       setRecipe(response.data); // Update state with all recipes
-      console.log(recipe)
       setCurrentPage(0); // Reset to the first page on new search
     } catch (error) {
       console.error('Error fetching recipes:', error);
     }
   }
-
-  
 
   return (
     <div className="search_bar">

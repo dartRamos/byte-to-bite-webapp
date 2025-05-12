@@ -3,7 +3,6 @@ const router = express.Router();
 const Spoonacular = require('spoonacular');
 const defaultClient = Spoonacular.ApiClient.instance;
 require('dotenv').config();
-const axios = require('axios');
 
 // Configure API key authorization: apiKeyScheme
 const apiKeyScheme = defaultClient.authentications['apiKeyScheme'];
