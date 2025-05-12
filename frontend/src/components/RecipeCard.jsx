@@ -2,6 +2,8 @@ import React from "react";
 import '../App.css';
 
 function RecipeCard({ recipe }) {
+
+  
   return (
     <div className="recipe-card">
       <div>
@@ -23,6 +25,10 @@ function RecipeCard({ recipe }) {
                 <li key={i}>{ingredient.name}</li>
               ))}
             </ul>
+            
+
+            {/* Adding a button to see full recipe */}
+           <button type="button"> View full recipe </button>
           </div>
         )}
       </div>

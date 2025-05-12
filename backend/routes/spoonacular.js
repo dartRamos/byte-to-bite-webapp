@@ -8,6 +8,7 @@ require('dotenv').config();
 const apiKeyScheme = defaultClient.authentications['apiKeyScheme'];
 apiKeyScheme.apiKey = process.env.SPOONACULAR_API_KEY; // hidden API key in .env file
 
+
 router.get('/RecipesByIngredients', async (req, res) => {
   try {
     const apiInstance = new Spoonacular.RecipesApi();
