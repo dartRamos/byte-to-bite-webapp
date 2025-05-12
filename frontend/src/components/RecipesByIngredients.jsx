@@ -19,7 +19,7 @@ function RecipesByIngredients() {
     } catch (error) {
       console.error('Error fetching recipes:', error);
     }
-  }
+  };
 
   return (
     <div className="search_bar">

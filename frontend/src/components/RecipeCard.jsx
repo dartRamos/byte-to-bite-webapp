@@ -3,6 +3,18 @@ import '../App.css';
 
 function RecipeCard({ recipe }) {
 
+  const handleViewRecipe = async () => {
+    try {
+      // Call the backend API with the recipe ID
+      const response = await axios.get(`http://localhost:8080/api/recipes/${recipe.id}`)
+
+      //console logging the data for debugging
+      console.log("Full recipe data:", response.data)
+    } catch (error) {
+      console.error("Error fetching recipe info:", error.message);
+    }
+  };
+
   
   return (
     <div className="recipe-card">
@@ -25,10 +37,10 @@ function RecipeCard({ recipe }) {
                 <li key={i}>{ingredient.name}</li>
               ))}
             </ul>
-            
+
 
             {/* Adding a button to see full recipe */}
-           <button type="button"> View full recipe </button>
+           <button type="button" onClick={handleViewRecipe}> View full recipe </button>
           </div>
         )}
       </div>
