@@ -1,37 +1,18 @@
-require('dotenv').config();
+const express = require('express'); // Import express
+const spoonacularRoutes = require('./routes/spoonacular'); // Route that leads to spoonacular API
+const cors = require('cors'); // Security protocol that prevents applications from different ports from accessing your info
+const uniqid = require('uniqid'); // To facilitate creating unique ids for our fake data
+const morgan = require('morgan'); // Middleware for logging HTTP requests
+require('dotenv').config(); // Load environment variables
 
-const express = require('express');
-const cors = require('cors');
-const axios = require('axios');
-const uniqid = require('uniqid');
-const morgan = require('morgan');
+const app = express(); // Create an instance of express
+const PORT = process.env.PORT || 8080; // Set up a port for the backend
 
-const app = express();
-const PORT = 8080;
-
-app.use(morgan('dev'));
+app.use(morgan('dev')); 
 app.use(cors());
+app.use(express.json());
 
-// Debug: check if the env loaded
-console.log('Loaded API key:', process.env.SPOONACULAR_API_KEY);
+// Register Spoonacular Routes
+app.use('/api/spoonacular', spoonacularRoutes);
 
-// Route to get recipe info by ID
-app.get('/recipes/:id/info', async (req, res) => {
-  const recipeId = req.params.id;
-  const apiKey = process.env.SPOONACULAR_API_KEY;
-
-  try {
-    const response = await axios.get(`https://api.spoonacular.com/recipes/${recipeId}/analyzedInstructions`, {
-      params: { apiKey }
-    });
-
-    res.json(response.data);
-  } catch (error) {
-    console.error('Error fetching recipe info:', error);
-    res.status(500).json({ error: 'Failed to fetch recipe info' });
-  }
-});
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
