@@ -28,7 +28,3 @@ VALUES
   '[{"name": "mushrooms", "amount": 2, "unit": "cups"}, {"name": "arborio rice", "amount": 1, "unit": "cup"}, {"name": "vegetable broth", "amount": 4, "unit": "cups"}]',
   TRUE
 );
-
-INSERT INTO recipe_matches (user_id, recipe_id, match_percentage)
-VALUES
-(1, 157375, 80.0); -- 80% match for recipe 157375
