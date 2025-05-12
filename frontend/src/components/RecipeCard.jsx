@@ -4,17 +4,18 @@ import axios from "axios";
 
 
 function RecipeCard({ recipe }) {
+
+  // store selected Recipe ID in state so React can re-render UI when the data arrives
   const [selectedRecipeId, setSelectedRecipeId] = useState(null);
+
 
   const handleViewRecipe = async () => {
     try {
-      // Call the backend API with the recipe ID
-      // store the ID in state *after* the call, if needed for later
-      const response = await axios.get(`http://localhost:8080/api/spoonacular/recipesById?id=${recipe.id}`)
+      // Send GET request to backend API, passing recipe ID as a query parameter
+      const response = await axios.get(`http://localhost:8080/api/spoonacular/recipesById?id=${recipe.id}`);
 
-      // store the ID in state *after* the call, if needed for later
+      // store the ID in state *AFTER* the call
       setSelectedRecipeId(recipe.id);
-
 
       //console logging the data for debugging
       console.log("Full recipe data:", response.data)
@@ -27,7 +28,7 @@ function RecipeCard({ recipe }) {
   return (
     <div className="recipe-card">
       <div>
-        <strong>Name:</strong>
+        <strong>Name: </strong>
         <a target="_blank" rel="noopener noreferrer" href={recipe?.sourceUrl}>
           {recipe?.title}
         </a>
@@ -45,12 +46,11 @@ function RecipeCard({ recipe }) {
                 <li key={i}>{ingredient.name}</li>
               ))}
             </ul>
-
-
-            {/* Adding a button to see full recipe */}
-           <button type="button" onClick={handleViewRecipe}> View full recipe </button>
-          </div>
+        </div>
         )}
+
+        {/* Add button to trigger full recipe fetch */}
+        <button type="button" onClick={handleViewRecipe}> View full recipe </button>
       </div>
     </div>
   );

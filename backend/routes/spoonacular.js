@@ -42,7 +42,7 @@ router.get('/RecipesByIngredients', async (req, res) => {
           .filter(recipe => recipe.matchPercentage >= 40) // Only include recipes with at least 40% match
           .sort((a, b) => b.matchCount - a.matchCount); // Sort by most matched ingredients
 
-        console.log('Filtered and sorted recipes:', filteredRecipes);
+        // console.log('Filtered and sorted recipes:', filteredRecipes);
         res.json(filteredRecipes); // Return the filtered and sorted recipes
       }
     });
@@ -57,7 +57,7 @@ router.get('/RecipesByIngredients', async (req, res) => {
 // Function to fetch recipes based on recipe ID
 // https://spoonacular.com/food-api/docs#Get-Recipe-Information
 router.get('/recipesById', async (req, res) => {
-  // get the id parameter from the front end
+  // get the id parameter from the request URL
   const recipeId = req.query.id;
 
   // If no ID is provided, return a 400 (Bad Request) error
@@ -65,21 +65,19 @@ router.get('/recipesById', async (req, res) => {
     return res.status(400).json({ error: 'Recipe ID is required' });
   }
 
-  //make a request to spoonacular api with the id 
+  //make a request to spoonacular api with the provided id 
   try {
     const response = await axios.get(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${process.env.SPOONACULAR_API_KEY}`);
 
+
+    // Send the full recipe data back to the frontend
     res.json(response.data);
-    console.log("Recipe data:" , response.data);
+    // console.log("Recipe data:" , response.data);
   } catch (error) {
     console.error('Error fetching full recipe from Spoonacular:', error.message);
     res.status(500).json({ error: 'Failed to fetch full recipe' });
-
   }
-
-
 })
-
 
 
 module.exports = router;
