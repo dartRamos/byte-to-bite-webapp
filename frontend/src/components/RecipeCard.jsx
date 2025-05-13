@@ -6,24 +6,22 @@ import RecipeModal from "./RecipeModal";
 
 function RecipeCard({ recipe }) {
 
-  // store selected Recipe ID in state so React can re-render UI when the data arrives
-  const [selectedRecipeId, setSelectedRecipeId] = useState(null);
-
-  // state to control modal. 
+  // store selected Recipe in state so React can re-render 
+  const [selectedRecipe, setSelectedRecipe] = useState(null);
+  // state to control modal
   const [showModal, setShowModal] = useState(false); 
-
 
   const handleViewRecipe = async () => {
     try {
       // Send GET request to backend API, passing recipe ID as a query parameter
       const response = await axios.get(`http://localhost:8080/api/spoonacular/recipesById?id=${recipe.id}`);
 
-      // store the ID in state *AFTER* the call
-      setSelectedRecipeId(recipe.id);
+      // store recipe data in state *AFTER* the call
+      setSelectedRecipe(response.data);
 
       // triggers modal 
       setShowModal(true);
-
+    
       //console logging the data for debugging
       console.log("Full recipe data:", response.data)
     } catch (error) {
@@ -60,9 +58,17 @@ function RecipeCard({ recipe }) {
         <button type="button" onClick={handleViewRecipe}> View full recipe </button>
       </div>
 
-      {/* When showModal is true, render modal */}
-      {/* passes function onClose as a prop to RecipeModal component */}
-      {showModal && <RecipeModal onClose={() => setShowModal(false)} />}
+      {/* When showModal is true, and there is a selected Recipe, render modal */}
+      {/* passes function onClose and the full recipe as a prop to RecipeModal component */}
+      {showModal && selectedRecipe && 
+        <RecipeModal 
+          fullRecipe={selectedRecipe}
+          onClose={() => {
+            setShowModal(false); 
+            setSelectedRecipe(null);
+          }} 
+        />
+      }
     </div>
   );
 }

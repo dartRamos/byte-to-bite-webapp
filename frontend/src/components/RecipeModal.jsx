@@ -1,7 +1,7 @@
 import React from "react";
 import { X } from 'lucide-react';
 
-const RecipeModal = ({onClose}) => {
+const RecipeModal = ({onClose, fullRecipe}) => {
 
   return (
     <div className="fixed inset-0 bg-gray bg-opacity-30 backdrop-blur-sm  flex-col justifiy-center items-center">
@@ -10,7 +10,7 @@ const RecipeModal = ({onClose}) => {
       </div>
 
       <div>
-        <h1 className="text-3xl font-extrabold">Recipe Title</h1>
+        <h1 className="text-3xl font-extrabold">{fullRecipe.title}</h1>
       </div>
       <div>
         <p>Recipe Picture goes here </p>
