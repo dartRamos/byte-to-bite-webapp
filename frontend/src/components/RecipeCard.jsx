@@ -1,12 +1,16 @@
 import React, {useState} from "react";
 import '../App.css';
 import axios from "axios";
+import RecipeModal from "./RecipeModal";
 
 
 function RecipeCard({ recipe }) {
 
   // store selected Recipe ID in state so React can re-render UI when the data arrives
   const [selectedRecipeId, setSelectedRecipeId] = useState(null);
+
+  // state to control modal. 
+  const [showModal, setShowModal] = useState(false); 
 
 
   const handleViewRecipe = async () => {
@@ -16,6 +20,9 @@ function RecipeCard({ recipe }) {
 
       // store the ID in state *AFTER* the call
       setSelectedRecipeId(recipe.id);
+
+      // triggers modal 
+      setShowModal(true);
 
       //console logging the data for debugging
       console.log("Full recipe data:", response.data)
@@ -52,6 +59,10 @@ function RecipeCard({ recipe }) {
         {/* Add button to trigger full recipe fetch */}
         <button type="button" onClick={handleViewRecipe}> View full recipe </button>
       </div>
+
+      {/* When showModal is true, render modal */}
+      {/* passes function onClose as a prop to RecipeModal component */}
+      {showModal && <RecipeModal onClose={() => setShowModal(false)} />}
     </div>
   );
 }

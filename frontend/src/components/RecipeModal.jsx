@@ -1,12 +1,12 @@
 import React from "react";
 import { X } from 'lucide-react';
 
-const RecipeModal = () => {
-  
+const RecipeModal = ({onClose}) => {
+
   return (
     <div className="fixed inset-0 bg-gray bg-opacity-30 backdrop-blur-sm  flex-col justifiy-center items-center">
       <div className="mt-10 flex flex-col gap-5">
-        <button className="place-self-end"><X size={30}/></button>
+        <button onClick={onClose} className="place-self-end"><X size={30}/></button>
       </div>
 
       <div>
@@ -29,7 +29,6 @@ const RecipeModal = () => {
         </section>
       </div>
       
-
       
       
     </div>
