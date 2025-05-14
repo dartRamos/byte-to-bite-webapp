@@ -18,7 +18,7 @@ router.get('/RecipesByIngredients', async (req, res) => {
     const opts = {
       number: 24, // Fetch 24 recipes
       ranking: 1, // Prioritize using more ingredients
-      ignorePantry: false // Include pantry staples in the API response
+      ignorePantry: true // Include pantry staples in the API response
     };
 
     apiInstance.searchRecipesByIngredients(ingredients, opts, (error, data, response) => {
@@ -39,7 +39,7 @@ router.get('/RecipesByIngredients', async (req, res) => {
               matchPercentage // Add match percentage for filtering
             };
           })
-          .filter(recipe => recipe.matchPercentage >= 40) // Only include recipes with at least 40% match
+          // .filter(recipe => recipe.matchPercentage >= 50) // Only include recipes with at least 50% match
           .sort((a, b) => b.matchCount - a.matchCount); // Sort by most matched ingredients
 
         // console.log('Filtered and sorted recipes:', filteredRecipes);
