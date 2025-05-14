@@ -2,12 +2,11 @@ import React from "react";
 import { X } from 'lucide-react';
 
 // POSITION STICKY FOR THE X BUTTON 
-// BACKGROUND BLUR 
 
 const RecipeModal = ({onClose, fullRecipe}) => {
 
   return (
-    <div className="fixed inset-0 bg-blue-900 bg-opacity-60 backdrop-blur-sm flex justify-center items-center z-50">
+    <div className="fixed inset-0 backdrop-blur-sm flex justify-center items-center z-50">
       <div className="bg-white rounded-2xl p-6 w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-lg relative"> 
 
         {/* Close button */}
