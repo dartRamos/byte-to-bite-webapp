@@ -2,13 +2,19 @@ import { useState } from "react";
 import axios from 'axios';
 import '../App.css';
 import RecipeCard from './RecipeCard'; // Import the RecipeCard component
+import { useEffect } from "react";
 
-function RecipesByIngredients() {
+function RecipesByIngredients(props) {
+  useEffect(() => {
+    // setIngredients(props.ingredients);
+    getRecipes(props.ingredients);
+  }, [props.ingredients]);
+
   const [recipe, setRecipe] = useState([]); // State to store multiple recipes
-  const [ingredients, setIngredients] = useState(""); // State to store user input
+  // const [ingredients, setIngredients] = useState(""); // State to store user input
   const [currentPage, setCurrentPage] = useState(0); // State to track the current page
 
-  async function getRecipes() {
+  async function getRecipes(ingredients) {
     try {
       // Call the backend endpoint with user-provided ingredients
       const response = await axios.get('http://localhost:8080/api/spoonacular/RecipesByIngredients', {
@@ -23,19 +29,6 @@ function RecipesByIngredients() {
 
   return (
     <div className="search_bar">
-      {/* Input bar for ingredients */}
-      <input
-        type="text"
-        placeholder="Enter ingredients..."
-        value={ingredients}
-        onChange={(e) => setIngredients(e.target.value)} // Update state on input change
-      />
-
-      {/* Button to trigger recipe search */}
-      <button onClick={getRecipes}>
-        Find my Recipes!
-      </button>
-
       {/* Recipe display */}
       {recipe.length > 0 && (
         <div className="recipes">
