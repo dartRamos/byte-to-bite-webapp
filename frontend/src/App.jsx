@@ -1,17 +1,14 @@
 import './App.css'
 import  RecipesByIngredients from "./components/RecipesByIngredients"
-import RecipeModal from './components/RecipeModal';
+import Fridge from './components/Fridge'
+import Nav from './components/Nav'
 
-
-function App() {
-
+const App = () => {
   return (
-    <div>
-      <h1 className="text-3xl font-bold text-blue-600">Welcome to Byte-to-Bite</h1>
-      <br/>
-      <RecipesByIngredients />
-    </div>
-
+    <>
+      <Nav />
+      <Fridge />
+    </>
   )
 }
 
