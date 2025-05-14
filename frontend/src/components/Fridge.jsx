@@ -1,16 +1,21 @@
-import React from 'react'
-import fridge from '../assets/fridge.png'
-import kitchen from '../assets/kitchen.png'
-import '../styling/Fridge.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import fridge from '../assets/fridge.png';
+import kitchen from '../assets/kitchen.png';
+import '../styling/Fridge.css';
 
 function Fridge() {
   return (
     <div 
-    className="fridge-container"
-    style={{ backgroundImage: `url(${kitchen})` }}
+      className="fridge-container"
+      style={{ backgroundImage: `url(${kitchen})` }}
     >
-      <div className='fridge-wrapper'>
-      <img src={fridge} alt="Fridge" className="fridge-image"/>
+      <div className="fridge-wrapper">
+        <img src={fridge} alt="Fridge" className="fridge-image" />
+        {/* Clickable shape */}
+        <Link to="/search" className="fridge-search-button">
+          {/* Optional: Add text or leave empty for just the shape */}
+        </Link>
       </div>
     </div>
   );
