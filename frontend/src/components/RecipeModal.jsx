@@ -3,7 +3,6 @@ import { X } from 'lucide-react';
 
 // POSITION STICKY FOR THE X BUTTON 
 // BACKGROUND BLUR 
-// WEIRD TAGS FIGURE OUT 
 
 const RecipeModal = ({onClose, fullRecipe}) => {
 
@@ -38,10 +37,16 @@ const RecipeModal = ({onClose, fullRecipe}) => {
         )}
 
         {/* Instructions */}
+        {/* Render HTML-formatted instructions from the API using dangerouslySetInnerHTML (instructions may include HTML tags) */} 
         {fullRecipe.instructions && (
           <div>
             <h3 className="text-2xl font-semibold mb-2">Instructions</h3>
-            <p className="whitespace-pre-line">{fullRecipe.instructions}</p>
+            
+            <div
+              className="text-base leading-relaxed space-y-2"
+              dangerouslySetInnerHTML={{ __html: fullRecipe.instructions }}
+            >
+            </div>
           </div>
         )}
       </div>
@@ -50,5 +55,9 @@ const RecipeModal = ({onClose, fullRecipe}) => {
 };
 
 export default RecipeModal;
+
+
+
+
 
 
