@@ -69,3 +69,21 @@
   list-style-type: disc;
   padding-left: 20px;
 }
+
+.category {
+  margin-bottom: 20px;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.field input {
+  margin-right: 10px;
+}
+
+button {
+  margin-top: 10px;
+}
