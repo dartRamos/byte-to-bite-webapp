@@ -26,24 +26,7 @@ router.get('/RecipesByIngredients', async (req, res) => {
         console.error('Error fetching recipes by Ingredients:', error);
         res.status(500).json({ error: 'Failed to fetch recipes' });
       } else {
-        // Filter recipes to include at least 50% of the input ingredients
-        const filteredRecipes = data
-          .map(recipe => {
-            const usedIngredients = recipe.usedIngredients.map(ing => ing.name.toLowerCase());
-            const matchingIngredients = inputIngredients.filter(ing => usedIngredients.includes(ing));
-            const matchPercentage = (matchingIngredients.length / inputIngredients.length) * 100;
-
-            return {
-              ...recipe,
-              matchCount: matchingIngredients.length, // Add match count for sorting
-              matchPercentage // Add match percentage for filtering
-            };
-          })
-          // .filter(recipe => recipe.matchPercentage >= 50) // Only include recipes with at least 50% match
-          .sort((a, b) => b.matchCount - a.matchCount); // Sort by most matched ingredients
-
-        // console.log('Filtered and sorted recipes:', filteredRecipes);
-        res.json(filteredRecipes); // Return the filtered and sorted recipes
+        res.json(data); // Directly return the API response
       }
     });
   } catch (error) {
