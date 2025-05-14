@@ -5,9 +5,12 @@ import { X } from 'lucide-react';
 
 const RecipeModal = ({onClose, fullRecipe}) => {
 
+  console.log("ENTERINGMODAL");
+
   return (
-    <div className="fixed inset-0 backdrop-blur-sm flex justify-center items-center z-50">
-      <div className="bg-white rounded-2xl p-6 w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-lg relative"> 
+    <div className="fixed bg-red-500 inset-0 backdrop-blur-sm flex justify-center items-center z-[50]">
+      
+      <div className="bg-white rounded-2xl p-6 w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-lg relative the-modal"> 
 
         {/* Close button */}
           <button 
@@ -58,9 +61,3 @@ const RecipeModal = ({onClose, fullRecipe}) => {
 };
 
 export default RecipeModal;
-
-
-
-
-
-

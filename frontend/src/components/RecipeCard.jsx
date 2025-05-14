@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import '../App.css';
 import axios from "axios";
 import RecipeModal from "./RecipeModal";
 
@@ -23,12 +24,14 @@ function RecipeCard({ recipe }) {
     
       //console logging the data for debugging
       console.log("Full recipe data:", response.data)
+      
     } catch (error) {
       console.error("Error fetching recipe info:", error.message);
     }
   };
 
-  
+  console.log("SELECTED RECIPE" , selectedRecipe)
+  console.log("Modal should show:", showModal);
   return (
     <div className="recipe-card">
       <div>
@@ -54,17 +57,13 @@ function RecipeCard({ recipe }) {
         )}
 
         {/* Add button to trigger full recipe fetch */}
-        <button type="button" onClick={async () => {
-          await handleViewRecipe();
-          setShowModal(true); 
-          }}> 
-          View full recipe </button>
-        {showModal && <Modal id={recipe.id} onClose={() => setShowModal(false)}/>}
+        <button type="button" onClick={handleViewRecipe}> View full recipe </button>
       </div>
 
+        
       {/* When showModal is true, and there is a selected Recipe, render modal */}
       {/* passes function onClose and the full recipe as a prop to RecipeModal component */}
-      {showModal && selectedRecipe && 
+      {showModal && selectedRecipe && (
         <RecipeModal 
           fullRecipe={selectedRecipe}
           onClose={() => {
@@ -72,10 +71,9 @@ function RecipeCard({ recipe }) {
             setSelectedRecipe(null);
           }} 
         />
-      }
+      )}
     </div>
   );
 }
-
 
 export default RecipeCard;
