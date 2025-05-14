@@ -10,7 +10,11 @@ const RecipeModal = ({onClose, fullRecipe}) => {
       <div className="bg-white rounded-2xl p-6 w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-lg relative"> 
 
         {/* Close button */}
-          <button onClick={onClose} className="absolute top-4 right-4 text-gray-500 hover:text-black z-10"><X size={30}/></button>
+          <button 
+            onClick={onClose} 
+            className="absolute top-4 right-4 text-gray-500 hover:text-black z-10">
+            <X size={30}/>
+          </button>
   
         {/* Title */}
         <h1 className=" font-extrabold text-center mb-4 pt-12">{fullRecipe.title}</h1>
