@@ -1,0 +1,35 @@
+.fridge-container {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100dvh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 0;
+}
+
+.fridge-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.fridge-image {
+  position: absolute;
+  top: 10px;       /* adjust to where you want it vertically */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;     /* or any fixed or max size you prefer */
+  height: auto;
+}
+
+@media (max-width: 1015px) {
+  .fridge-image {
+    width: 800px;
+    height: auto;
+    padding-bottom: 700px;
+  }
+}

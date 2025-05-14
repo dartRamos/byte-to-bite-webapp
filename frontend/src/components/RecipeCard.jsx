@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import '../App.css';
 import axios from "axios";
 
 
@@ -8,6 +7,7 @@ function RecipeCard({ recipe }) {
   // store selected Recipe ID in state so React can re-render UI when the data arrives
   const [selectedRecipeId, setSelectedRecipeId] = useState(null);
 
+  const [showModal, setShowModal] = useState(false);
 
   const handleViewRecipe = async () => {
     try {
@@ -50,10 +50,16 @@ function RecipeCard({ recipe }) {
         )}
 
         {/* Add button to trigger full recipe fetch */}
-        <button type="button" onClick={handleViewRecipe}> View full recipe </button>
+        <button type="button" onClick={async () => {
+          await handleViewRecipe();
+          setShowModal(true); 
+          }}> 
+          View full recipe </button>
+        {showModal && <Modal id={recipe.id} onClose={() => setShowModal(false)}/>}
       </div>
     </div>
   );
 }
+
 
 export default RecipeCard;
