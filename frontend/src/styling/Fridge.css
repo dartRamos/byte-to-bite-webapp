@@ -25,11 +25,3 @@
   width: 900px;     /* or any fixed or max size you prefer */
   height: auto;
 }
-
-@media (max-width: 1015px) {
-  .fridge-image {
-    width: 800px;
-    height: auto;
-    padding-bottom: 700px;
-  }
-}
