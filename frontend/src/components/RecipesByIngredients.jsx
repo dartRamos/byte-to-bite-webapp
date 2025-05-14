@@ -1,6 +1,5 @@
 import { useState } from "react";
 import axios from 'axios';
-import '../App.css';
 import RecipeCard from './RecipeCard'; // Import the RecipeCard component
 import { useEffect } from "react";
 
@@ -20,6 +19,7 @@ function RecipesByIngredients(props) {
       const response = await axios.get('http://localhost:8080/api/spoonacular/RecipesByIngredients', {
         params: { ingredients } // Pass ingredients as query parameters
       });
+      console.log('Recipe data: ', response.data)
       setRecipe(response.data); // Update state with all recipes
       setCurrentPage(0); // Reset to the first page on new search
     } catch (error) {
