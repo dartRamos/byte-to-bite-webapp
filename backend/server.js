@@ -15,4 +15,6 @@ app.use(express.json());
 // Register Spoonacular Routes
 app.use('/api/spoonacular', spoonacularRoutes);
 
+app.use(saveRecipeRouter);
+
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
