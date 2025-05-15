@@ -30,14 +30,14 @@
 /* Tooltip */
 .tooltip-text {
   visibility: hidden;
-  background-color: #1e3a8a; /* Tailwind dark blue: indigo-900 */
+  background-color: #1e3a8a; 
   color: white;
   text-align: center;
   padding: 6px 10px;
   border-radius: 4px;
   position: absolute;
   top: 50%;
-  left: 110%; /* shift tooltip to the right of the heart */
+  left: 110%; 
   transform: translateY(-50%);
   white-space: nowrap;
   font-size: 0.85rem;

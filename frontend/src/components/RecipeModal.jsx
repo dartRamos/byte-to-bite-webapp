@@ -1,7 +1,7 @@
 import React, {useRef} from "react";
 import { X } from 'lucide-react';
 import '../styling/RecipeModal.css'
-import FavouriteButton from "./FavouriteButton";
+import FavoriteButton from "./FavoriteButton";
 
 const RecipeModal = ({onClose, fullRecipe}) => {
 
@@ -23,7 +23,7 @@ const RecipeModal = ({onClose, fullRecipe}) => {
       <div className="modal-content" ref={contentRef}>
 
         {/* Favourite button */}
-        <FavouriteButton />
+        <FavoriteButton />
 
 
         {/* Close button */}

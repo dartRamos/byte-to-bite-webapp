@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Heart } from 'lucide-react';
-import '../styling/FavouriteButton.css'
+import '../styling/FavoriteButton.css'
 
-const FavouriteButton = () => {
+const FavoriteButton = () => {
   // state to control if is favourite 
   const [isFavorited, setIsFavorited] = useState(false);
 
   const [showPopup, setShowPopup] = useState(false);
 
-  // Function to hangle the click
+  // Function to handle the click
   const handleClick = () => {
     setIsFavorited(!isFavorited); 
     //console.log("FIRE");
@@ -51,4 +51,4 @@ const FavouriteButton = () => {
   )
 };
 
-export default FavouriteButton;
+export default FavoriteButton;
