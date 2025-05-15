@@ -77,18 +77,10 @@ db.query('SELECT NOW()')
   };
 
 
-  // Saved Recipes
+  // Save Recipes
   const saveRecipeForUser = async function(userId, saved_recipe) {
     
     try {
-      // Assume instructions is an HTML string; store it as is (as text)
-      //const instructions = JSON.stringify(saved_recipe.instructions);
-      
-      // Assume ingredients is already an array/object that can be stored as JSONB
-      // const ingredients = JSON.stringify(saved_recipe.extendedIngredients);
-
-      // INSERT INTO saved_recipes (user_id, recipe_id, title, image_url, instructions, ingredients, is_favorited) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *
-
       const result = await db.query(
         `INSERT INTO saved_recipes (user_id, recipe_id, title, image_url, is_favorited) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
         [userId, saved_recipe.id, saved_recipe.title, saved_recipe.image,  saved_recipe.is_favorited]
@@ -98,6 +90,17 @@ db.query('SELECT NOW()')
       throw err;
     }
   }
+
+  // remove recipes
+  const removeRecipeForUser = async (userId, recipeId) => {
+  const queryText = 'DELETE FROM saved_recipes WHERE recipe_id = $1 AND user_id = $2 RETURNING *';
+  try {
+    const result = await db.query(queryText, [recipeId, userId]);
+    return result;
+  } catch (err) {
+    throw err;
+  }
+};
 
   const getSavedRecipesByUserId = async (userId) => {
     try {
@@ -112,5 +115,5 @@ db.query('SELECT NOW()')
     }
   };
 
-module.exports = {createUser, getUserById, addUserIngredient, getUserIngredientsByUserId, saveRecipeForUser, getSavedRecipesByUserId};
+module.exports = {createUser, getUserById, addUserIngredient, getUserIngredientsByUserId, saveRecipeForUser, getSavedRecipesByUserId, removeRecipeForUser};
 

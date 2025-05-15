@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { saveRecipeForUser } = require('../db/database');
+const { saveRecipeForUser, removeRecipeForUser } = require('../db/database');
 
 router.post('/save-recipe', async (req, res) => {
 
@@ -21,5 +21,34 @@ router.post('/save-recipe', async (req, res) => {
     res.status(500).json({ error: 'Failed to save recipe' });
   }
 });
+
+
+router.delete('/remove-recipe', async (req, res) => {
+  try {
+    const userId = 1; // hard coded for now 
+    const { recipe_id } = req.body;
+    
+    // if no userId or no recipeId, error 
+    if (!recipe_id || !userId) {
+      return res.status(400).json({ error: 'Missing recipe_id or user_id' });
+    }
+
+    // call removeRecipeForUser function 
+    const result = await removeRecipeForUser(userId, recipe_id);
+
+    // result.rowCount comes from the result of your db.query(...) call.
+    // It tells you how many rows were affected (in this case, deleted). If 0, means nothing was affected 
+    if (result.rowCount === 0) {
+      return res.status(404).json({ message: 'Recipe not found or already removed' });
+    }
+
+
+    res.status(200).json({ message: 'Recipe removed successfully', removedRecipe: result.rows[0] });
+  } catch (err) {
+    console.error('Error removing recipe:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 
 module.exports = router;

@@ -12,35 +12,47 @@ const FavoriteButton = ({fullRecipe}) => {
 
   // Function to handle the click
   const handleClick = async () => {
-    setIsFavorited(!isFavorited); 
 
+  const newFavoritedState = !isFavorited;
+  setIsFavorited(newFavoritedState); 
 
-    // Show popup only when favorited
-    if (!isFavorited) {
-      setShowPopup(true);
-      setTimeout(() => setShowPopup(false), 1000); // hide after 1 second
-    }
+  // If newFavoritedState is true, means the recipe is liked = save to the db
+  if (newFavoritedState) {
+    setShowPopup(true);
+    setTimeout(() => setShowPopup(false), 1500);
 
+    // SAVE to the db (POST)
     try {
       await axios.post('http://localhost:8080/api/save-recipe', {
         ...fullRecipe,
-        is_favorited: true 
+        is_favorited: true,
       });
 
-      console.log('Recipe saved successfully');
+      console.log('Recipe saved to the DB');
     } catch (error) {
       console.log('Failed to save recipe:', error);
-    };
+    }
+  // If newFavoritedState is false, means the recipe is NOT liked = removes from the db
+  } else {
 
-  };
+    //  REMOVE recipe from DB (DELETE)
+    try {
+      await axios.delete('http://localhost:8080/api/remove-recipe', {
+        data: { recipe_id: fullRecipe.id },
+      });
+      console.log('Recipe removed from the DB');
+    } catch (error) {
+      console.log('Failed to remove recipe:', error);
+    }
+  }
+};
 
   return (
     <div>
       <div className="tooltip-wrapper">
         <button
           className='fav-button'
-          onClick={handleClick}
-          
+          onClick={handleClick}   
         >
           <Heart 
             size={36}
