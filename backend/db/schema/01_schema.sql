@@ -25,7 +25,5 @@ CREATE TABLE saved_recipes ( -- To save favorited recipe ID from API
   recipe_id INTEGER NOT NULL,
   title TEXT NOT NULL, -- To display title of recipe on app
   image_url TEXT NOT NULL, -- To display recipe image on app
-  instructions JSONB, -- To save instructions + cook timers
-  ingredients JSONB, -- To save ingredients + measurements
   is_favorited BOOLEAN DEFAULT FALSE -- To decide if recipe is saved to DB
 );

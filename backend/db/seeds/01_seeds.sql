@@ -11,20 +11,12 @@ VALUES
   (1, 'salt', TRUE),
   (1, 'pepper', TRUE);
 
-INSERT INTO saved_recipes (user_id, recipe_id, title, image_url, instructions, ingredients, is_favorited)
+INSERT INTO saved_recipes (user_id, recipe_id, title, image_url, is_favorited)
 VALUES
 (
   1,
   157375,
   'Steamy Creamy Mushroom Risotto',
   'https://img.spoonacular.com/recipes/157375-312x231.jpg',
-  '[
-    {"step": "Heat the broth.", "timer": 5},
-    {"step": "Sauté mushrooms.", "timer": 10},
-    {"step": "Add rice and stir.", "timer": 5},
-    {"step": "Gradually add broth.", "timer": 15},
-    {"step": "Stir until creamy.", "timer": 5}
-  ]',
-  '[{"name": "mushrooms", "amount": 2, "unit": "cups"}, {"name": "arborio rice", "amount": 1, "unit": "cup"}, {"name": "vegetable broth", "amount": 4, "unit": "cups"}]',
   TRUE
 );
