@@ -1,21 +1,29 @@
 import React, { useState } from 'react';
 import { Heart } from 'lucide-react';
+import '../styling/FavouriteButton.css'
 
 const FavouriteButton = () => {
+  // state to control if is favourite 
+  const [isFavorited, setIsFavorited] = useState(false);
 
   // Function to hangle the click
   const handleClick = () => {
-    console.log("FIRE");
+    setIsFavorited(!isFavorited); 
+    //console.log("FIRE");
+    // Add code to save favorite to DB here
 
-  }
-
+  };
 
   return (
     <div>
       <button
-        onClick={handleClick}>
-          FAVOURITE BUTTON
-
+        className='fav-button'
+        onClick={handleClick}
+         >
+          <Heart 
+            size={36}
+            className={`fav-icon ${isFavorited ? 'favorited' : ''}`} 
+          />
       </button>
       
     </div>

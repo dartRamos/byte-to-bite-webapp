@@ -1,0 +1,28 @@
+.fav-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* space between text and icon */
+  font-weight: bold;
+  font-size: 1rem;
+  color: #333;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.fav-button:hover {
+  transform: scale(1.1);
+}
+
+.fav-icon {
+  transition: fill 0.3s ease, stroke 0.3s ease;
+  stroke-width: 2;
+}
+
+.fav-icon.favorited {
+  fill: red;
+  stroke: red;
+}
