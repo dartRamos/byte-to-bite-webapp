@@ -1,13 +1,25 @@
-import React from "react";
+import React, {useRef} from "react";
 import { X } from 'lucide-react';
 import '../styling/RecipeModal.css'
-// POSITION STICKY FOR THE X BUTTON 
 
 const RecipeModal = ({onClose, fullRecipe}) => {
 
+  // useRef is a React Hook that gives you a way to access and persist a DOM element or a value across renders without triggering a re-render.
+  const contentRef = useRef();  // Ref to the modal content div
+
+  // Handler to close the modal if clicking outside the modal content
+  const handleOverlayClick = (e) => {
+    // If the click target is outside the modal content, close it
+    if (contentRef.current && !contentRef.current.contains(e.target)) {
+      onClose();
+    }
+  };
+
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="modal-overlay" onClick={handleOverlayClick}>
+      
+      {/* Modal content box */}
+      <div className="modal-content" ref={contentRef}>
 
         {/* Close button */}
         <button 
