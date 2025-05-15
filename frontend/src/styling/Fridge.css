@@ -25,3 +25,24 @@
   width: 900px;     /* or any fixed or max size you prefer */
   height: auto;
 }
+
+.fridge-search-button {
+  position: absolute;
+  top: 34.5%; /* Adjust to position the shape */
+  left: 50%; /* Adjust to position the shape */
+  transform: translate(-50%, -50%);
+  width: 310px; /* Adjust size */
+  height: 280px; /* Adjust size */
+  background-color: rgba(255, 255, 255, 0); /* Fully transparent */
+  border-radius: 0%; 
+  cursor: pointer;
+  border: 2px solid transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none; /* Remove underline if text is added */
+}
+
+.fridge-button:hover {
+  background-color: rgba(255, 255, 255, 0.8); /* Change color on hover */
+}
