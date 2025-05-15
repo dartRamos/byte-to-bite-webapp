@@ -33,7 +33,9 @@ function RecipeCard({ recipe }) {
   // console.log("SELECTED RECIPE" , selectedRecipe)
   // console.log("Modal should show:", showModal);
   return (
+    
     <div className="recipe-card">
+      
       <div>
         <strong>Name: </strong>
         <a target="_blank" rel="noopener noreferrer" href={recipe?.sourceUrl}>
