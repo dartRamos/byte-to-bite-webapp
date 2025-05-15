@@ -59,7 +59,7 @@ function RecipeCard({ recipe }) {
           setShowModal(true); 
           }}> 
           View full recipe </button>
-        {showModal && <Modal id={recipe.id} onClose={() => setShowModal(false)}/>}
+        {showModal && <RecipeModal id={recipe.id} onClose={() => setShowModal(false)}/>}
       </div>
 
       {/* When showModal is true, and there is a selected Recipe, render modal */}
