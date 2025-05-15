@@ -77,22 +77,30 @@ db.query('SELECT NOW()')
   };
 
 
-  // Saved Recipes
+  // Save Recipes
   const saveRecipeForUser = async function(userId, saved_recipe) {
+    
     try {
-      const instructions = typeof saved_recipe.instructions === 'string' ? JSON.parse(saved_recipe.instructions) : saved_recipe.instructions;
-      
-      const ingredients = typeof saved_recipe.ingredients === 'string' ? JSON.parse(saved_recipe.ingredients) : saved_recipe.ingredients
-
       const result = await db.query(
-        `INSERT INTO saved_recipes (user_id, recipe_id, title, image_url, instructions, ingredients, is_favorited) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
-        [userId, saved_recipe.recipe_id, saved_recipe.title, saved_recipe.image_url, instructions, ingredients, saved_recipe.is_favorited]
+        `INSERT INTO saved_recipes (user_id, recipe_id, title, image_url, is_favorited) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
+        [userId, saved_recipe.id, saved_recipe.title, saved_recipe.image,  saved_recipe.is_favorited]
       );
       return result.rows[0];
     } catch (err) {
       throw err;
     }
   }
+
+  // remove recipes
+  const removeRecipeForUser = async (userId, recipeId) => {
+  const queryText = 'DELETE FROM saved_recipes WHERE recipe_id = $1 AND user_id = $2 RETURNING *';
+  try {
+    const result = await db.query(queryText, [recipeId, userId]);
+    return result;
+  } catch (err) {
+    throw err;
+  }
+};
 
   const getSavedRecipesByUserId = async (userId) => {
     try {
@@ -107,5 +115,5 @@ db.query('SELECT NOW()')
     }
   };
 
-module.exports = {createUser, getUserById, addUserIngredient, getUserIngredientsByUserId, saveRecipeForUser, getSavedRecipesByUserId};
+module.exports = {createUser, getUserById, addUserIngredient, getUserIngredientsByUserId, saveRecipeForUser, getSavedRecipesByUserId, removeRecipeForUser};
 

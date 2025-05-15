@@ -1,5 +1,6 @@
 /* IMPORTING TAILWIND 
 This the main global stylesheet, usually imported once at the app's entry point */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
