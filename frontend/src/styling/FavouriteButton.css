@@ -26,3 +26,50 @@
   fill: red;
   stroke: red;
 }
+
+/* Tooltip */
+.tooltip-text {
+  visibility: hidden;
+  background-color: #1e3a8a; /* Tailwind dark blue: indigo-900 */
+  color: white;
+  text-align: center;
+  padding: 6px 10px;
+  border-radius: 4px;
+  position: absolute;
+  top: 50%;
+  left: 110%; /* shift tooltip to the right of the heart */
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font-size: 0.85rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.tooltip-wrapper {
+  position: relative; /* important for tooltip positioning */
+  display: inline-block;
+}
+
+.fav-button:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup-notification {
+  position: fixed;
+  top: 60px;          /* distance from the top of the modal */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #1e3a8a;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  font-weight: 600;
+  z-index: 1000;
+  animation: fadeInOut 2.5s forwards;
+  max-width: 300px;
+  text-align: center;
+}

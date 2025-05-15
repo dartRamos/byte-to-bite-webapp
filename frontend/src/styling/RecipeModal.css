@@ -24,3 +24,24 @@
   position: relative;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
+
+.modal-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: #374151; /* Tailwind's gray-700 */
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  line-height: 1;
+}
+
+.modal-close-btn:hover {
+  background-color: #e0e7ff; /* Tailwind’s indigo-100 */
+  color: #4338ca; /* Tailwind’s indigo-700 */
+}

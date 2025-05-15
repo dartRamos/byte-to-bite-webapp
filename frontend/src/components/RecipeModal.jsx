@@ -1,6 +1,7 @@
 import React, {useRef} from "react";
 import { X } from 'lucide-react';
 import '../styling/RecipeModal.css'
+import FavouriteButton from "./FavouriteButton";
 
 const RecipeModal = ({onClose, fullRecipe}) => {
 
@@ -21,11 +22,15 @@ const RecipeModal = ({onClose, fullRecipe}) => {
       {/* Modal content box */}
       <div className="modal-content" ref={contentRef}>
 
+        {/* Favourite button */}
+        <FavouriteButton />
+
+
         {/* Close button */}
         <button 
           onClick={onClose} 
-          style={{ position: "absolute", top: "16px", right: "16px", background: "transparent", border: "none", cursor: "pointer" }}>
-          <X size={30}/>
+          className="modal-close-btn">
+          <X size={40}/>
         </button>
   
         {/* Title */}
