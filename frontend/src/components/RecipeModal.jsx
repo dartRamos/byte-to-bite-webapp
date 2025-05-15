@@ -5,18 +5,16 @@ import '../styling/RecipeModal.css'
 
 const RecipeModal = ({onClose, fullRecipe}) => {
 
-  console.log("ENTERINGMODAL");
-
   return (
     <div className="modal-overlay">
-  <div className="modal-content">
+      <div className="modal-content">
 
         {/* Close button */}
-          <button 
-            onClick={onClose} 
-            style={{ position: "absolute", top: "16px", right: "16px", background: "transparent", border: "none", cursor: "pointer" }}>
-            <X size={30}/>
-          </button>
+        <button 
+          onClick={onClose} 
+          style={{ position: "absolute", top: "16px", right: "16px", background: "transparent", border: "none", cursor: "pointer" }}>
+          <X size={30}/>
+        </button>
   
         {/* Title */}
         <h1 className=" font-extrabold text-center mb-4 pt-12">{fullRecipe.title}</h1>
@@ -54,6 +52,7 @@ const RecipeModal = ({onClose, fullRecipe}) => {
             </div>
           </div>
         )}
+        
       </div>
     </div>
   );
