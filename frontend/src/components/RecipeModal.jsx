@@ -27,6 +27,12 @@ const RecipeModal = ({onClose, fullRecipe}) => {
             className="w-full max-h-64 object-cover rounded-lg mb-4"/>
         )}
 
+        {/* Time and Servings */}
+        <div className="text-center text-gray-700 mb-4">
+          <p><strong>Ready in:</strong> {fullRecipe.readyInMinutes} minutes</p>
+          <p><strong>Servings:</strong> {fullRecipe.servings}</p>
+        </div>
+
         {/* Ingredients */}
         {fullRecipe.extendedIngredients?.length > 0 && (
           <div className="mb-6">
