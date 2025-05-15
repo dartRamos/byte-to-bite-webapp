@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { Heart } from 'lucide-react';
+import axios from 'axios';
 import '../styling/FavoriteButton.css'
 
-const FavoriteButton = () => {
+const FavoriteButton = ({fullRecipe}) => {
+
   // state to control if is favourite 
   const [isFavorited, setIsFavorited] = useState(false);
 
   const [showPopup, setShowPopup] = useState(false);
 
   // Function to handle the click
-  const handleClick = () => {
+  const handleClick = async () => {
     setIsFavorited(!isFavorited); 
-    //console.log("FIRE");
+
 
     // Show popup only when favorited
     if (!isFavorited) {
@@ -19,7 +21,16 @@ const FavoriteButton = () => {
       setTimeout(() => setShowPopup(false), 1000); // hide after 1 second
     }
 
-    // Add code to save favorite to DB here
+    try {
+      await axios.post('http://localhost:8080/api/save-recipe', {
+        ...fullRecipe,
+        is_favorited: true 
+      });
+
+      console.log('Recipe saved successfully');
+    } catch (error) {
+      console.log('Failed to save recipe:', error);
+    };
 
   };
 

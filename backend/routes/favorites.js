@@ -1,10 +1,8 @@
-// Create API route to save favorites
-
 const express = require('express');
 const router = express.Router();
 const { saveRecipeForUser } = require('../db/database');
 
-router.post('/api/save-recipe', async (req, res) => {
+router.post('/save-recipe', async (req, res) => {
 
   try {
 
@@ -12,6 +10,9 @@ router.post('/api/save-recipe', async (req, res) => {
     // After we add authentication, replace the hardcoded 1 with the logged-in user’s ID.
     const userId = 1; 
     const savedRecipe = req.body;  // Full recipe object from frontend
+
+    console.log('Saving recipe for user:', userId);
+    console.log('Recipe data:', savedRecipe);
     
     const saved = await saveRecipeForUser(userId, savedRecipe);
     res.json(saved);

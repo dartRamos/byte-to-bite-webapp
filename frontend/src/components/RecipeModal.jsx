@@ -23,7 +23,7 @@ const RecipeModal = ({onClose, fullRecipe}) => {
       <div className="modal-content" ref={contentRef}>
 
         {/* Favourite button */}
-        <FavoriteButton />
+        <FavoriteButton fullRecipe={fullRecipe}/>
 
 
         {/* Close button */}
