@@ -1,15 +1,14 @@
-import IngredientForm from "./IngredientForm"
-import RecipesByIngredients from "./RecipesByIngredients"
+import IngredientForm from "./IngredientForm";
+import RecipesByIngredients from "./RecipesByIngredients";
 import { useState } from "react";
 
-function SearchPage () {
+function SearchPage() {
+  const [ingredients, setIngredients] = useState(""); // State to store user input
 
-const [ingredients, setIngredients] = useState(""); // State to store user input
-  
   const handleFormSubmit = (data) => {
     const combinedIngredients = Object.values(data)
       .flat()
-      .filter(item => item.trim() !== "")
+      .filter((item) => item.trim() !== "")
       .join(", ");
 
     setIngredients(combinedIngredients);
@@ -19,9 +18,16 @@ const [ingredients, setIngredients] = useState(""); // State to store user input
   };
 
   return (
-    <div className="SearchPage">
-      <IngredientForm onSubmit={handleFormSubmit} />
-      <RecipesByIngredients ingredients={ingredients}/>
+    <div className="SearchPage flex h-screen">
+      {/* Left-hand side: IngredientForm */}
+      <div className="w-1/5 bg-gray-100 p-4 border-r border-gray-300">
+        <IngredientForm onSubmit={handleFormSubmit} />
+      </div>
+
+      {/* Right-hand side: RecipesByIngredients */}
+      <div className="w-4/5 p-4">
+        <RecipesByIngredients ingredients={ingredients} />
+      </div>
     </div>
   );
 }

@@ -12,7 +12,6 @@ const App = () => {
         <Route path="/" element={<Fridge />} />
         <Route path="/search" element={<SearchPage />} />
       </Routes>
-      <SearchPage />
     </>
   );
 };

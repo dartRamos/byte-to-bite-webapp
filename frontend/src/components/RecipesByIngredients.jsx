@@ -6,7 +6,7 @@ import { useEffect } from "react";
 function RecipesByIngredients(props) {
   useEffect(() => {
     // setIngredients(props.ingredients);
-    getRecipes(props.ingredients);
+    if(props.ingredients !== ""){getRecipes(props.ingredients);}
   }, [props.ingredients]);
 
   const [recipe, setRecipe] = useState([]); // State to store multiple recipes
@@ -28,7 +28,7 @@ function RecipesByIngredients(props) {
   };
 
   return (
-    <div className="search_bar">
+    <div className="grid grid-cols-5 grid-rows-5 gap-4">
       {/* Recipe display */}
       {recipe.length > 0 && (
         <div className="recipes">
