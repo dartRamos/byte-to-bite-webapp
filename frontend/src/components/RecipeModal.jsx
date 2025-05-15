@@ -1,6 +1,6 @@
 import React from "react";
 import { X } from 'lucide-react';
-
+import '../styling/RecipeModal.css'
 // POSITION STICKY FOR THE X BUTTON 
 
 const RecipeModal = ({onClose, fullRecipe}) => {
@@ -8,14 +8,13 @@ const RecipeModal = ({onClose, fullRecipe}) => {
   console.log("ENTERINGMODAL");
 
   return (
-    <div className="fixed bg-red-500 inset-0 backdrop-blur-sm flex justify-center items-center z-[50]">
-      
-      <div className="bg-white rounded-2xl p-6 w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-lg relative the-modal"> 
+    <div className="modal-overlay">
+  <div className="modal-content">
 
         {/* Close button */}
           <button 
             onClick={onClose} 
-            className="absolute top-4 right-4 text-gray-500 hover:text-black z-10">
+            style={{ position: "absolute", top: "16px", right: "16px", background: "transparent", border: "none", cursor: "pointer" }}>
             <X size={30}/>
           </button>
   
