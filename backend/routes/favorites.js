@@ -56,6 +56,7 @@ router.get('/saved-recipes', async (req, res) => {
   try {
     const userId = 1; // hardcoded for now
     const savedRecipes = await getSavedRecipesByUserId(userId);
+    
     res.json(savedRecipes);
   } catch (err) {
     console.error('Error fetching saved recipes:', err);
