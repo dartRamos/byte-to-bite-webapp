@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { saveRecipeForUser, removeRecipeForUser } = require('../db/database');
+const { saveRecipeForUser, removeRecipeForUser, getSavedRecipesByUserId  } = require('../db/database');
 
+//POST REQUEST TO SAVE RECIPES TO THE DB
 router.post('/save-recipe', async (req, res) => {
 
   try {
@@ -22,7 +23,7 @@ router.post('/save-recipe', async (req, res) => {
   }
 });
 
-
+//DELETE REQUEST TO REMOVE RECIPES FROM THE DB
 router.delete('/remove-recipe', async (req, res) => {
   try {
     const userId = 1; // hard coded for now 
@@ -49,6 +50,20 @@ router.delete('/remove-recipe', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
+
+router.get('/saved-recipes', async (req, res) => {
+  try {
+    const userId = 1; // hardcoded for now
+    const savedRecipes = await getSavedRecipesByUserId(userId);
+    res.json(savedRecipes);
+  } catch (err) {
+    console.error('Error fetching saved recipes:', err);
+    res.status(500).json({ error: 'Failed to fetch saved recipes' });
+  }
+});
+
+
 
 
 module.exports = router;
