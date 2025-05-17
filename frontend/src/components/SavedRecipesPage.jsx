@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import SavedRecipesCard from "./SavedRecipesCard";
 import axios from "axios";
+import '../styling/SavedRecipesPage.css'
 
 const SavedRecipesPage = () => {
 
@@ -29,7 +30,7 @@ const SavedRecipesPage = () => {
 
 
   return (
-    <div>
+    <div className="saved-recipes-page">
       <h1>Saved Recipes</h1>
 
       {/* Pass recipes array as a prop */}
