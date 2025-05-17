@@ -1,31 +1,29 @@
 import { useEffect, useState } from "react";
-import RecipeCard from "./RecipeCard";
+import SavedRecipesCard from "./SavedRecipesCard";
 import axios from "axios";
 
 const SavedRecipesPage = () => {
+  
+  const testingPage = async () => {
+     try {
+      // Send GET request to backend API, passing recipe ID as a query parameter
+      const response = await axios.get(`http://localhost:8080/db/saved-recipes`);
 
-  const [savedRecipes, setSavedRecipes] = useState([]);
+      console.log(response);
 
-  useEffect(() => {
-  axios.get('/api/favorites/saved-recipes')
-    .then((res) => setSavedRecipes(res.data))
-    .catch((err) => console.error("Error loading saved recipes:", err));
-  }, []);
+      } catch (error) {
+      console.error("Error fetching recipe info:", error.message);
+    }
+  };
 
 
   return (
-    <div className="saved-recipes-page">
-      <h1>All Saved Recipes </h1>
-      <div className="recipe-grid">
-        {savedRecipes.map(({ recipe_id, title, image_url }) => (
-         <RecipeCard
-           key={recipe_id}
-           recipe={{ id: recipe_id, title, image: image_url }}
-        />
-        ))}
-
-
-      </div>
+    <div>
+      <h1>Saved Recipes</h1>
+      {/* Add a button to trigger testingPage */}
+      <button onClick={testingPage}>Fetch Saved Recipes</button>
+      
+      <SavedRecipesCard />
     </div>
   )
 };

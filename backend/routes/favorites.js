@@ -51,13 +51,14 @@ router.delete('/remove-recipe', async (req, res) => {
   }
 });
 
-
+// http://localhost:5173/db/saved-recipes
 router.get('/saved-recipes', async (req, res) => {
   try {
     const userId = 1; // hardcoded for now
     const savedRecipes = await getSavedRecipesByUserId(userId);
     
     res.json(savedRecipes);
+    console.log(savedRecipes);
   } catch (err) {
     console.error('Error fetching saved recipes:', err);
     res.status(500).json({ error: 'Failed to fetch saved recipes' });
