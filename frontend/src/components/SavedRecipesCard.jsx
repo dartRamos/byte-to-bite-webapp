@@ -61,6 +61,7 @@ const SavedRecipesCard = ({savedRecipes}) => {
             setShowModal(false); 
             setSelectedRecipe(null);
           }} 
+          isFavorite={true}
         />
       )}
       

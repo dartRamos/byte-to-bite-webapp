@@ -3,10 +3,10 @@ import { Heart } from 'lucide-react';
 import axios from 'axios';
 import '../styling/FavoriteButton.css'
 
-const FavoriteButton = ({fullRecipe}) => {
+const FavoriteButton = ({fullRecipe, initialFavorited = false}) => {
 
   // state to control if is favourite 
-  const [isFavorited, setIsFavorited] = useState(false);
+  const [isFavorited, setIsFavorited] = useState(initialFavorited);
 
   const [showPopup, setShowPopup] = useState(false);
 

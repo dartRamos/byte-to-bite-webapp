@@ -3,7 +3,7 @@ import { X } from 'lucide-react';
 import '../styling/RecipeModal.css'
 import FavoriteButton from "./FavoriteButton";
 
-const RecipeModal = ({onClose, fullRecipe}) => {
+const RecipeModal = ({onClose, fullRecipe, isFavorite}) => {
 
   // useRef is a React Hook that gives you a way to access and persist a DOM element or a value across renders without triggering a re-render.
   const contentRef = useRef();  // Ref to the modal content div
@@ -23,7 +23,7 @@ const RecipeModal = ({onClose, fullRecipe}) => {
       <div className="modal-content" ref={contentRef}>
 
         {/* Favourite button */}
-        <FavoriteButton fullRecipe={fullRecipe}/>
+        <FavoriteButton fullRecipe={fullRecipe} initialFavorited={isFavorite}/>
 
 
         {/* Close button */}
