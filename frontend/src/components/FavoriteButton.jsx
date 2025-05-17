@@ -3,7 +3,7 @@ import { Heart } from 'lucide-react';
 import axios from 'axios';
 import '../styling/FavoriteButton.css'
 
-const FavoriteButton = ({fullRecipe, initialFavorited = false}) => {
+const FavoriteButton = ({fullRecipe, initialFavorited = false, onFavoritesChange}) => {
 
   // state to control if is favourite 
   const [isFavorited, setIsFavorited] = useState(initialFavorited);
@@ -29,6 +29,12 @@ const FavoriteButton = ({fullRecipe, initialFavorited = false}) => {
       });
 
       console.log('Recipe saved to the DB');
+
+      // Call the callback to notify parent to refresh
+      if (onFavoritesChange) {
+        onFavoritesChange();
+      }
+
     } catch (error) {
       console.log('Failed to save recipe:', error);
     }
@@ -41,6 +47,12 @@ const FavoriteButton = ({fullRecipe, initialFavorited = false}) => {
         data: { recipe_id: fullRecipe.id },
       });
       console.log('Recipe removed from the DB');
+
+      // Call the callback to notify parent to refresh
+      if (onFavoritesChange) {
+        onFavoritesChange();
+      }
+      
     } catch (error) {
       console.log('Failed to remove recipe:', error);
     }

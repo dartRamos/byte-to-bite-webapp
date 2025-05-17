@@ -3,7 +3,7 @@ import '../styling/SavedRecipesCard.css'
 import axios from "axios";
 import RecipeModal from "./RecipeModal";
 
-const SavedRecipesCard = ({savedRecipes}) => {
+const SavedRecipesCard = ({savedRecipes, onFavoritesChange}) => {
 
   // store selected Recipe in state so React can re-render 
   const [selectedRecipe, setSelectedRecipe] = useState(null);
@@ -62,6 +62,7 @@ const SavedRecipesCard = ({savedRecipes}) => {
             setSelectedRecipe(null);
           }} 
           isFavorite={true}
+          onFavoritesChange={onFavoritesChange}
         />
       )}
       

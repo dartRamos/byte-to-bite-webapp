@@ -34,7 +34,7 @@ const SavedRecipesPage = () => {
       <h1>Saved Recipes</h1>
 
       {/* Pass recipes array as a prop */}
-      <SavedRecipesCard savedRecipes={savedRecipes} />
+      <SavedRecipesCard savedRecipes={savedRecipes} onFavoritesChange={fetchSavedRecipes}/>
     </div>
   )
 };
