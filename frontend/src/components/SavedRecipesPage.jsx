@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import SavedRecipesCard from "./SavedRecipesCard";
 import axios from "axios";
 
