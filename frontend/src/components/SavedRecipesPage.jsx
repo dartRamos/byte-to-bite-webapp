@@ -6,7 +6,7 @@ const SavedRecipesPage = () => {
   
   const testingPage = async () => {
      try {
-      // Send GET request to backend API, passing recipe ID as a query parameter
+      // Send GET request to backend DB
       const response = await axios.get(`http://localhost:8080/db/saved-recipes`);
 
       console.log(response);

@@ -23,7 +23,7 @@ const FavoriteButton = ({fullRecipe}) => {
 
     // SAVE to the db (POST)
     try {
-      await axios.post('http://localhost:8080/api/save-recipe', {
+      await axios.post('http://localhost:8080/db/save-recipe', {
         ...fullRecipe,
         is_favorited: true,
       });
@@ -37,7 +37,7 @@ const FavoriteButton = ({fullRecipe}) => {
 
     //  REMOVE recipe from DB (DELETE)
     try {
-      await axios.delete('http://localhost:8080/api/remove-recipe', {
+      await axios.delete('http://localhost:8080/db/remove-recipe', {
         data: { recipe_id: fullRecipe.id },
       });
       console.log('Recipe removed from the DB');
