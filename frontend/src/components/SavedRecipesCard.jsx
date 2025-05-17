@@ -1,12 +1,21 @@
-import React from "react";
+import '../styling/SavedRecipesCard.css'
 
+const SavedRecipesCard = ({savedRecipes}) => {
 
-const SavedRecipesCard = () => {
   return (
-    <div className="saved-recipe-card">
-      
-      <h1>I AM THE SAVED RECIPES CARD</h1>
-      
+    <div className="saved-recipe-container">
+       {savedRecipes.length === 0 ? (
+        <p>No saved recipes yet.</p>
+      ) : (
+        savedRecipes.map(recipe => (
+          <div key={recipe.recipe_id} className="recipe-card">
+            <h2 className="recipe-title">{recipe.title} </h2>
+            <img src={recipe.image_url} alt={recipe.title} className="recipe-image"/>
+          </div>
+          
+        ))
+      )}
+
     </div>
   )
 };

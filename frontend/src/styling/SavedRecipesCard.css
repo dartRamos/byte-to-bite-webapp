@@ -1,0 +1,26 @@
+.saved-recipes-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 16px;
+}
+
+.recipe-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  max-width: 220px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  background-color: #fff;
+}
+
+.recipe-title {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.recipe-image {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
