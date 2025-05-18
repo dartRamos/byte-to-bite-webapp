@@ -33,45 +33,50 @@ function RecipeCard({ recipe }) {
   // console.log("SELECTED RECIPE" , selectedRecipe)
   // console.log("Modal should show:", showModal);
   return (
-    
-    <div className="recipe-card">
-      
-      <div>
-        <strong>Name: </strong>
-        <a target="_blank" rel="noopener noreferrer" href={recipe?.sourceUrl}>
-          {recipe?.title}
-        </a>
+    <div className="recipe-card border border-gray-300 rounded-lg p-4 shadow-md flex flex-col items-center text-center">
+      {/* Recipe Title */}
+      <div className="mb-4">
+        <strong className="text-lg font-semibold">{recipe?.title}</strong>
       </div>
-      <div className="recipe-content">
-        {/* Image */}
-        <img src={recipe?.image} alt={recipe?.title} />
 
-        {/* Ingredients */}
-        {recipe?.usedIngredients?.length > 0 && (
-          <div className="ingredients">
-            <strong>Ingredients Used:</strong>
-            <ul>
-              {recipe.usedIngredients.map((ingredient, i) => (
-                <li key={i}>{ingredient.name}</li>
-              ))}
-            </ul>
+      {/* Recipe Image */}
+      <div className="mb-4">
+        <img
+          src={recipe?.image}
+          alt={recipe?.title}
+          className="w-full h-auto rounded-md"
+        />
+      </div>
+
+      {/* Ingredients */}
+      {recipe?.usedIngredients?.length > 0 && (
+        <div className="ingredients mb-4">
+          <strong>Ingredients Used:</strong>
+          <ul className="list-disc list-inside">
+            {recipe.usedIngredients.map((ingredient, i) => (
+              <li key={i}>{ingredient.name}</li>
+            ))}
+          </ul>
         </div>
-        )}
+      )}
 
-        {/* Add button to trigger full recipe fetch */}
-        <button type="button" onClick={handleViewRecipe}> View full recipe </button>
-      </div>
+      {/* View Full Recipe Button */}
+      <button
+        type="button"
+        onClick={handleViewRecipe}
+        className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+      >
+        View Full Recipe
+      </button>
 
-        
-      {/* When showModal is true, and there is a selected Recipe, render modal */}
-      {/* passes function onClose and the full recipe as a prop to RecipeModal component */}
+      {/* Modal */}
       {showModal && selectedRecipe && (
-        <RecipeModal 
+        <RecipeModal
           fullRecipe={selectedRecipe}
           onClose={() => {
-            setShowModal(false); 
+            setShowModal(false);
             setSelectedRecipe(null);
-          }} 
+          }}
         />
       )}
     </div>

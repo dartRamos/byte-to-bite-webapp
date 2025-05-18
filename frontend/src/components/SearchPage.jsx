@@ -20,7 +20,7 @@ function SearchPage() {
   return (
     <div className="SearchPage flex h-screen">
       {/* Left-hand side: IngredientForm */}
-      <div className="w-1/5 bg-gray-100 p-4 border-r border-gray-300">
+      <div className="w-1/5 h-full bg-gray-100 p-4 border-r border-gray-300">
         <IngredientForm onSubmit={handleFormSubmit} />
       </div>
 

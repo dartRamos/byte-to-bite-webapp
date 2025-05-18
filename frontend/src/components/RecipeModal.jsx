@@ -41,7 +41,7 @@ const RecipeModal = ({onClose, fullRecipe}) => {
           <img 
             src={fullRecipe.image} 
             alt={fullRecipe.title} 
-            className="w-full max-h-64 object-cover rounded-lg mb-4"/>
+            className="modal-image w-full object-cover rounded-lg mb-4"/>
         )}
 
         {/* Time and Servings */}
