@@ -3,10 +3,10 @@ import { Heart } from 'lucide-react';
 import axios from 'axios';
 import '../styling/FavoriteButton.css'
 
-const FavoriteButton = ({fullRecipe}) => {
+const FavoriteButton = ({fullRecipe, initialFavorited = false, onFavoritesChange}) => {
 
   // state to control if is favourite 
-  const [isFavorited, setIsFavorited] = useState(false);
+  const [isFavorited, setIsFavorited] = useState(initialFavorited);
 
   const [showPopup, setShowPopup] = useState(false);
 
@@ -23,12 +23,18 @@ const FavoriteButton = ({fullRecipe}) => {
 
     // SAVE to the db (POST)
     try {
-      await axios.post('http://localhost:8080/api/save-recipe', {
+      await axios.post('http://localhost:8080/db/save-recipe', {
         ...fullRecipe,
         is_favorited: true,
       });
 
       console.log('Recipe saved to the DB');
+
+      // Call the callback to notify parent to refresh
+      if (onFavoritesChange) {
+        onFavoritesChange();
+      }
+
     } catch (error) {
       console.log('Failed to save recipe:', error);
     }
@@ -37,10 +43,16 @@ const FavoriteButton = ({fullRecipe}) => {
 
     //  REMOVE recipe from DB (DELETE)
     try {
-      await axios.delete('http://localhost:8080/api/remove-recipe', {
+      await axios.delete('http://localhost:8080/db/remove-recipe', {
         data: { recipe_id: fullRecipe.id },
       });
       console.log('Recipe removed from the DB');
+
+      // Call the callback to notify parent to refresh
+      if (onFavoritesChange) {
+        onFavoritesChange();
+      }
+      
     } catch (error) {
       console.log('Failed to remove recipe:', error);
     }

@@ -20,7 +20,7 @@ app.use(express.json());
 app.use('/api/spoonacular', spoonacularRoutes);
 
 //saveRecipe Route
-app.use('/api', favoritesRoutes);
+app.use('/db', favoritesRoutes);
 
 
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
