@@ -80,7 +80,7 @@ function MakeRecipePage({ onFavoritesChange }) {
           {remainingIngredients.length > 0 && (
             <div className="make-recipe-ingredients">
               <div className="other-ingredients">
-                <h3 className="make-recipe-section-title">Other Ingredients</h3>
+                <h3 className="make-recipe-section-title"> Pantry Ingredients</h3>
                 <ul className="make-recipe-ingredient-list">
                   {remainingIngredients.map((ingredient, index) => (
                     <li key={index}>{ingredient.original}</li>
