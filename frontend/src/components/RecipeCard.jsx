@@ -4,6 +4,7 @@ import axios from "axios";
 import RecipeModal from "./RecipeModal";
 import '../styling/RecipeCard.css';
 import { useNavigate } from "react-router-dom";
+import FavoriteButton from "./FavoriteButton";
 
 function RecipeCard({ recipe }) {
   const navigate = useNavigate();
@@ -46,8 +47,10 @@ function RecipeCard({ recipe }) {
   return (
     <div className="recipe-card">
       <div className="card-content">
+        
         {/* Recipe Title */}
         <div className="recipe-title">
+          <FavoriteButton fullRecipe={recipe} />
           <strong>{recipe?.title}</strong>
         </div>
         {/* Recipe Image */}
@@ -77,7 +80,7 @@ function RecipeCard({ recipe }) {
           onClick={handleViewRecipe}
           className="view-recipe-btn"
         >
-          View Full Recipe
+          View All Ingredients
         </button>
         <button
           type="button"
