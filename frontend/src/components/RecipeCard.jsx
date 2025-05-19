@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import '../App.css';
 import axios from "axios";
 import RecipeModal from "./RecipeModal";
-
+import '../styling/RecipeCard.css';
 
 function RecipeCard({ recipe }) {
 
@@ -30,29 +30,27 @@ function RecipeCard({ recipe }) {
     }
   };
 
-  // console.log("SELECTED RECIPE" , selectedRecipe)
-  // console.log("Modal should show:", showModal);
   return (
-    <div className="recipe-card border border-gray-300 rounded-lg p-4 shadow-md flex flex-col items-center text-center">
+    <div className="recipe-card">
       {/* Recipe Title */}
-      <div className="mb-4">
-        <strong className="text-lg font-semibold">{recipe?.title}</strong>
+      <div className="recipe-title">
+        <strong>{recipe?.title}</strong>
       </div>
 
       {/* Recipe Image */}
-      <div className="mb-4">
+      <div className="recipe-image">
         <img
           src={recipe?.image}
           alt={recipe?.title}
-          className="w-full h-auto rounded-md"
+          className="recipe-img"
         />
       </div>
 
       {/* Ingredients */}
       {recipe?.usedIngredients?.length > 0 && (
-        <div className="ingredients mb-4">
+        <div className="ingredients">
           <strong>Ingredients Used:</strong>
-          <ul className="list-disc list-inside">
+          <ul className="ingredient-list">
             {recipe.usedIngredients.map((ingredient, i) => (
               <li key={i}>{ingredient.name}</li>
             ))}
@@ -64,7 +62,7 @@ function RecipeCard({ recipe }) {
       <button
         type="button"
         onClick={handleViewRecipe}
-        className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+        className="view-recipe-btn"
       >
         View Full Recipe
       </button>

@@ -1,6 +1,7 @@
 import IngredientForm from "./IngredientForm";
 import RecipesByIngredients from "./RecipesByIngredients";
 import { useState } from "react";
+import '../styling/SearchPage.css';
 
 function SearchPage() {
   const [ingredients, setIngredients] = useState(""); // State to store user input
@@ -18,14 +19,14 @@ function SearchPage() {
   };
 
   return (
-    <div className="SearchPage flex h-screen">
+    <div className="SearchPage">
       {/* Left-hand side: IngredientForm */}
-      <div className="w-1/5 h-full bg-gray-100 p-4 border-r border-gray-300">
+      <div className="ingredient-form-sidebar">
         <IngredientForm onSubmit={handleFormSubmit} />
       </div>
 
       {/* Right-hand side: RecipesByIngredients */}
-      <div className="w-4/5 p-4">
+      <div className="recipes-section">
         <RecipesByIngredients ingredients={ingredients} />
       </div>
     </div>

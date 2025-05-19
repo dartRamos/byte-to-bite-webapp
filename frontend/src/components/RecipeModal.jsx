@@ -45,7 +45,8 @@ const RecipeModal = ({onClose, fullRecipe, isFavorite, onFavoritesChange}) => {
           <img 
             src={fullRecipe.image} 
             alt={fullRecipe.title} 
-            className="modal-image w-full object-cover rounded-lg mb-4"/>
+            className="modal-image"
+          />
         )}
 
         {/* Time and Servings */}
