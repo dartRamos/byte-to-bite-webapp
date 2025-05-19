@@ -1,11 +1,10 @@
 .SearchPage {
   display: flex;
-  height: 100vh;
+  height: -webkit-fill-available;
 }
 
 .ingredient-form-sidebar {
   width: 30%;
-  height: 100%;
   background: #f3f4f6;
   padding: 1rem;
   border-right: 4px solid #9ca3af;

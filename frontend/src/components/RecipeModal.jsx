@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, { useRef } from "react";
 import { X } from 'lucide-react';
 import '../styling/RecipeModal.css'
 import FavoriteButton from "./FavoriteButton";

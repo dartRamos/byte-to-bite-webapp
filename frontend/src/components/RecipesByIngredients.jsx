@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from 'axios';
-import RecipeCard from './RecipeCard'; // Import the RecipeCard component
-import { useEffect } from "react";
+import RecipeCard from './RecipeCard';
+import '../styling/RecipesByIngredients.css';
 
 function RecipesByIngredients(props) {
   useEffect(() => {
-    // setIngredients(props.ingredients);
-    if(props.ingredients !== ""){getRecipes(props.ingredients);}
+    if (props.ingredients !== "") {
+      getRecipes(props.ingredients); // setIngredients (props.ingredients)
+    }
   }, [props.ingredients]);
 
   const [recipe, setRecipe] = useState([]); // State to store multiple recipes
@@ -28,23 +29,22 @@ function RecipesByIngredients(props) {
   };
 
   return (
-    <div className="grid grid-cols-1 gap-4">
+    <div className="recipes-container">
       {/* Recipe display */}
       {recipe.length > 0 && (
-        <div className="grid grid-cols-3 grid-rows-2 gap-4">
+        <div className="recipes-grid">
           {recipe.slice(currentPage * 6, currentPage * 6 + 6).map((recipe, index) => (
-            <RecipeCard key={index} recipe={recipe} /> 
+            <RecipeCard key={index} recipe={recipe} />
           ))}
         </div>
       )}
 
       {/* Pagination buttons */}
-      <div className="pagination flex justify-between mt-4">
-        {/* Button to go back to the previous page */}
+      <div className="pagination">
         {currentPage > 0 && (
           <button
             onClick={() => setCurrentPage(currentPage - 1)}
-            className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+            className="pagination-btn"
           >
             Previous Recipes
           </button>
@@ -54,7 +54,7 @@ function RecipesByIngredients(props) {
         {recipe.length > (currentPage + 1) * 6 && (
           <button
             onClick={() => setCurrentPage(currentPage + 1)}
-            className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+            className="pagination-btn"
           >
             Load More Recipes
           </button>
