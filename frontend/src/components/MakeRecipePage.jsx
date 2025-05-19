@@ -2,14 +2,11 @@ import { useLocation } from "react-router-dom";
 import FavoriteButton from "./FavoriteButton";
 import "../styling/MakeRecipePage.css";
 
-function MakeRecipePage({ onFavoritesChange }) {
+function MakeRecipePage() {
   const location = useLocation();
   const missedIngredients = location.state?.missedIngredients;
   const usedIngredients = location.state?.usedIngredients;
   const fullRecipe = location.state?.fullRecipe;
-
-  console.log(missedIngredients)
-  console.log(usedIngredients)
 
   // You can set isFavorite logic as needed
   const isFavorite = false;
@@ -31,8 +28,6 @@ function MakeRecipePage({ onFavoritesChange }) {
           {/* Favourite button */}
           <FavoriteButton 
             fullRecipe={fullRecipe} 
-            initialFavorited={isFavorite}
-            onFavoritesChange={onFavoritesChange}
           />
 
           {/* Title */}
