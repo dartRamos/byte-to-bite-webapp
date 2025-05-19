@@ -16,7 +16,9 @@ function RecipeCard({ recipe }) {
   const makeThisRecipe = async () => {
     try {
       const response = await axios.get(`http://localhost:8080/api/spoonacular/recipesById?id=${recipe.id}`);
-      navigate('/make-recipe', { state: { recipe: response.data } });
+      navigate('/make-recipe', { state: { fullRecipe: response.data,
+        usedIngredients: recipe.usedIngredients,
+        missedIngredients: recipe.missedIngredients } });
     } catch (error) {
       console.error("Error fetching full recipe info:", error.message);
     }
