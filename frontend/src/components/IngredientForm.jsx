@@ -1,7 +1,16 @@
 import { useForm, useFieldArray } from "react-hook-form";
+import '../styling/IngredientForm.css';
 
 function IngredientForm({ onSubmit }) {
-  const categories = ["meat", "produce", "carbs", "dairy", "oils & vinegars", "condiments", "seasonings"];
+  const categories = [
+    "meat",
+    "produce",
+    "carbs",
+    "dairy",
+    "oils & vinegars",
+    "condiments",
+    "seasonings",
+  ];
 
   const defaultValues = categories.reduce((acc, category) => {
     acc[category] = [""];
@@ -18,33 +27,42 @@ function IngredientForm({ onSubmit }) {
   }, {});
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="ingredient-form">
       {categories.map((category) => (
-        <div key={category} className="category">
-          <h3>{category.charAt(0).toUpperCase() + category.slice(1)}</h3>
+        <div key={category} className="ingredient-category">
+          <div className="category-header">
+            <h3 className="category-title">
+              {category.charAt(0).toUpperCase() + category.slice(1)}
+            </h3>
+            <button
+              type="button"
+              onClick={() => fieldArrays[category].append("")}
+              className="add-btn"
+            >
+              +
+            </button>
+          </div>
           {fieldArrays[category].fields.map((item, index) => (
-            <div key={item.id} className="field">
+            <div key={item.id} className="ingredient-field">
               <input
                 {...register(`${category}.${index}`)}
                 placeholder={`Enter ${category}...`}
+                className="ingredient-input"
               />
               <button
                 type="button"
                 onClick={() => fieldArrays[category].remove(index)}
+                className="remove-btn"
               >
                 Remove
               </button>
             </div>
           ))}
-          <button
-            type="button"
-            onClick={() => fieldArrays[category].append("")}
-          >
-            +
-          </button>
         </div>
       ))}
-      <button type="submit">Submit</button>
+      <button type="submit" className="submit-btn">
+        Find Recipes
+      </button>
     </form>
   );
 }

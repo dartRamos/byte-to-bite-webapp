@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, { useRef } from "react";
 import { X } from 'lucide-react';
 import '../styling/RecipeModal.css'
 import FavoriteButton from "./FavoriteButton";
@@ -45,7 +45,8 @@ const RecipeModal = ({onClose, fullRecipe, isFavorite, onFavoritesChange}) => {
           <img 
             src={fullRecipe.image} 
             alt={fullRecipe.title} 
-            className="w-full max-h-64 object-cover rounded-lg mb-4"/>
+            className="modal-image"
+          />
         )}
 
         {/* Time and Servings */}

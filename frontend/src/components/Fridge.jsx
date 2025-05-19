@@ -14,7 +14,6 @@ function Fridge() {
         <img src={fridge} alt="Fridge" className="fridge-image" />
         {/* Clickable shape */}
         <Link to="/search" className="fridge-search-button">
-          {/* Optional: Add text or leave empty for just the shape */}
         </Link>
       </div>
     </div>

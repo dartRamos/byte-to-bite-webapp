@@ -1,15 +1,28 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import '../App.css';
 import axios from "axios";
 import RecipeModal from "./RecipeModal";
-
+import '../styling/RecipeCard.css';
+import { useNavigate } from "react-router-dom";
 
 function RecipeCard({ recipe }) {
+  const navigate = useNavigate();
 
   // store selected Recipe in state so React can re-render 
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   // state to control modal
   const [showModal, setShowModal] = useState(false); 
+
+  const makeThisRecipe = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8080/api/spoonacular/recipesById?id=${recipe.id}`);
+      navigate('/make-recipe', { state: { fullRecipe: response.data,
+        usedIngredients: recipe.usedIngredients,
+        missedIngredients: recipe.missedIngredients } });
+    } catch (error) {
+      console.error("Error fetching full recipe info:", error.message);
+    }
+  };
 
   const handleViewRecipe = async () => {
     try {
@@ -30,48 +43,58 @@ function RecipeCard({ recipe }) {
     }
   };
 
-  // console.log("SELECTED RECIPE" , selectedRecipe)
-  // console.log("Modal should show:", showModal);
   return (
-    
     <div className="recipe-card">
-      
-      <div>
-        <strong>Name: </strong>
-        <a target="_blank" rel="noopener noreferrer" href={recipe?.sourceUrl}>
-          {recipe?.title}
-        </a>
-      </div>
-      <div className="recipe-content">
-        {/* Image */}
-        <img src={recipe?.image} alt={recipe?.title} />
-
+      <div className="card-content">
+        {/* Recipe Title */}
+        <div className="recipe-title">
+          <strong>{recipe?.title}</strong>
+        </div>
+        {/* Recipe Image */}
+        <div className="recipe-image">
+          <img
+            src={recipe?.image}
+            alt={recipe?.title}
+            className="recipe-img"
+          />
+        </div>
         {/* Ingredients */}
         {recipe?.usedIngredients?.length > 0 && (
           <div className="ingredients">
             <strong>Ingredients Used:</strong>
-            <ul>
+            <ul className="ingredient-list">
               {recipe.usedIngredients.map((ingredient, i) => (
                 <li key={i}>{ingredient.name}</li>
               ))}
             </ul>
-        </div>
+          </div>
         )}
-
-        {/* Add button to trigger full recipe fetch */}
-        <button type="button" onClick={handleViewRecipe}> View full recipe </button>
       </div>
-
-        
-      {/* When showModal is true, and there is a selected Recipe, render modal */}
-      {/* passes function onClose and the full recipe as a prop to RecipeModal component */}
+      {/* Buttons Row */}
+      <div className="button-row">
+        <button
+          type="button"
+          onClick={handleViewRecipe}
+          className="view-recipe-btn"
+        >
+          View Full Recipe
+        </button>
+        <button
+          type="button"
+          onClick={makeThisRecipe}
+          className="make-recipe-btn"
+        >
+          Make This Recipe
+        </button>
+      </div>
+      {/* Modal */}
       {showModal && selectedRecipe && (
-        <RecipeModal 
+        <RecipeModal
           fullRecipe={selectedRecipe}
           onClose={() => {
-            setShowModal(false); 
+            setShowModal(false);
             setSelectedRecipe(null);
-          }} 
+          }}
         />
       )}
     </div>

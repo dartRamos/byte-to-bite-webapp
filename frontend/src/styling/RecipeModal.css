@@ -45,3 +45,12 @@
   background-color: #e0e7ff; /* Tailwind’s indigo-100 */
   color: #4338ca; /* Tailwind’s indigo-700 */
 }
+
+.modal-image {
+  width: 320px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  display: block;
+  margin: 0 auto 1rem auto;
+}
