@@ -8,7 +8,7 @@ function Fridge() {
   return (
     <div 
       className="fridge-container"
-      style={{ backgroundImage: `url(${kitchen})` }}
+      style={{ backgroundImage: `url(${kitchen})`}}
     >
       <div className="fridge-wrapper">
         <img src={fridge} alt="Fridge" className="fridge-image" />
