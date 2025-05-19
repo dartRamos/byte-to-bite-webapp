@@ -22,14 +22,7 @@ const RecipeModal = ({onClose, fullRecipe, isFavorite, onFavoritesChange}) => {
       {/* Modal content box */}
       <div className="modal-content" ref={contentRef}>
 
-        {/* Favourite button */}
-        <FavoriteButton 
-          fullRecipe={fullRecipe} 
-          initialFavorited={isFavorite}
-          onFavoritesChange={onFavoritesChange}
-        />
-
-
+       
         {/* Close button */}
         <button 
           onClick={onClose} 
@@ -64,20 +57,6 @@ const RecipeModal = ({onClose, fullRecipe, isFavorite, onFavoritesChange}) => {
                 <li key={index}>{ingredient.original}</li>
               ))}
             </ul>
-          </div>
-        )}
-
-        {/* Instructions */}
-        {/* Render HTML-formatted instructions from the API using dangerouslySetInnerHTML (instructions may include HTML tags) */} 
-        {fullRecipe.instructions && (
-          <div>
-            <h3 className="text-2xl font-semibold mb-2">Instructions</h3>
-            
-            <div
-              className="text-base leading-relaxed space-y-2"
-              dangerouslySetInnerHTML={{ __html: fullRecipe.instructions }}
-            >
-            </div>
           </div>
         )}
         
