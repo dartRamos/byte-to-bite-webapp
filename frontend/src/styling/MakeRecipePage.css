@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
 .make-recipe-page {
   min-height: 100vh;
   display: flex;
@@ -90,4 +92,57 @@
   margin-bottom: 1em;
   line-height: 1.3;
   font-size: .75em;
+}
+
+.shopping-list {
+  background: 
+    repeating-linear-gradient(
+      to bottom,
+      #fff9b0 0px,
+      #fff9b0 36px,
+      rgba(74,144,226,0.22) 36px,
+      rgba(74,144,226,0.22) 37px,
+      rgba(74,144,226,0.08) 38px,
+      #fff9b0 38px
+    );
+  border-radius: 0; /* Hard corners */
+  border: 1.5px solid #e6d700;
+  box-shadow: 2px 4px 16px rgba(0,0,0,0.10);
+  padding: 1.2rem 1.5rem;
+  padding-top: 0.5rem; /* Decrease this value to push the title up */
+  margin-bottom: 2rem;
+  position: relative;
+  font-family: 'Indie Flower', 'Comic Sans MS', cursive, sans-serif; /* Handwriting style */
+  background-size: 100% 38px;
+}
+
+.shopping-list .make-recipe-section-title {
+  color: #d7263d; /* Red ink */
+  font-family: inherit;
+  margin-bottom: 0.2rem; /* Decrease this to bring the first ingredient closer */
+  font-size: 1.5rem; /* Add or adjust this line for desired size */
+}
+
+.shopping-list .make-recipe-ingredient-list {
+  padding-top: 0.2rem;
+  padding-left: 0;
+  margin: 0;
+  list-style: none;
+  position: relative;
+}
+
+.shopping-list .make-recipe-ingredient-list li {
+  color: #d7263d; /* Red ink */
+  font-family: inherit;
+  font-size: 1.1em;
+  padding-left: 0.5em;
+  margin-bottom: 0; /* Remove margin to keep spacing consistent */
+  line-height: 32px; /* Decrease this to move text up */
+  padding-bottom: 0px; /* Remove or decrease to move text up */
+  background: transparent;
+}
+
+/* Add blue horizontal lines for the whole note */
+.shopping-list .make-recipe-ingredient-list li:last-child {
+  border-bottom: none;
 }
