@@ -4,10 +4,21 @@ import "../styling/MakeRecipePage.css";
 
 function MakeRecipePage({ onFavoritesChange }) {
   const location = useLocation();
-  const fullRecipe = location.state?.recipe;
+  const missedIngredients = location.state?.missedIngredients;
+  const usedIngredients = location.state?.usedIngredients;
+  const fullRecipe = location.state?.fullRecipe;
+
+  console.log(missedIngredients)
+  console.log(usedIngredients)
 
   // You can set isFavorite logic as needed
   const isFavorite = false;
+
+  const usedNames = new Set(usedIngredients?.map(i => i.name?.toLowerCase()) || []);
+  const missedNames = new Set(missedIngredients?.map(i => i.name?.toLowerCase()) || []);
+  const remainingIngredients = (fullRecipe.extendedIngredients || []).filter(
+    ing => !usedNames.has(ing.name?.toLowerCase()) && !missedNames.has(ing.name?.toLowerCase())
+  );
 
   if (!fullRecipe) {
     return <div>No recipe data found.</div>;
@@ -43,14 +54,39 @@ function MakeRecipePage({ onFavoritesChange }) {
           </div>
 
           {/* Ingredients */}
-          {fullRecipe.extendedIngredients?.length > 0 && (
+          <div className="make-recipe-ingredients">
+            {usedIngredients?.length > 0 && (
+              <div className="your-ingredients">
+                <h3 className="make-recipe-section-title">Your Ingredients</h3>
+                <ul className="make-recipe-ingredient-list">
+                  {usedIngredients.map((ingredient, index) => (
+                    <li key={index}>{ingredient.original || ingredient.name}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {missedIngredients?.length > 0 && (
+              <div className="shopping-list">
+                <h3 className="make-recipe-section-title">Shopping List</h3>
+                <ul className="make-recipe-ingredient-list">
+                  {missedIngredients.map((ingredient, index) => (
+                    <li key={index}>{ingredient.original || ingredient.name}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+     
+          {remainingIngredients.length > 0 && (
             <div className="make-recipe-ingredients">
-              <h3 className="make-recipe-section-title">Ingredients</h3>
-              <ul className="make-recipe-ingredient-list">
-                {fullRecipe.extendedIngredients.map((ingredient, index) => (
-                  <li key={index}>{ingredient.original}</li>
-                ))}
-              </ul>
+              <div className="other-ingredients">
+                <h3 className="make-recipe-section-title">Other Ingredients</h3>
+                <ul className="make-recipe-ingredient-list">
+                  {remainingIngredients.map((ingredient, index) => (
+                    <li key={index}>{ingredient.original}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
           )}
         </div>
