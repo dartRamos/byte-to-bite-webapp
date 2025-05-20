@@ -5,10 +5,11 @@ import SavedRecipesPage from './components/SavedRecipesPage';
 import SearchPage from './components/SearchPage';
 import MakeRecipePage from './components/MakeRecipePage';
 import { Routes, Route } from 'react-router-dom';
+import { FavoritesProvider } from "./context/FavoritesContext";
 
 const App = () => {
   return (
-    <>
+    <FavoritesProvider>
       <Nav /> 
       <Routes>
         <Route path="/" element={<Fridge />} />
@@ -16,7 +17,7 @@ const App = () => {
         <Route path="/saved-recipes" element={<SavedRecipesPage />} />
         <Route path="/make-recipe" element={<MakeRecipePage />} />
       </Routes>
-    </>
+    </FavoritesProvider>
   );
 };
 

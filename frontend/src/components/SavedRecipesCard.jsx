@@ -2,8 +2,20 @@ import React, {useState} from "react";
 import '../styling/SavedRecipesCard.css'
 import axios from "axios";
 import RecipeModal from "./RecipeModal";
+import { useNavigate } from "react-router-dom";
 
 const SavedRecipesCard = ({savedRecipes, onFavoritesChange}) => {
+  const navigate = useNavigate();
+
+    const makeThisRecipe = async (recipe) => {
+    try {
+      const response = await axios.get(`http://localhost:8080/api/spoonacular/recipesById?id=${recipe.recipe_id}`);
+      navigate('/make-recipe', { state: { fullRecipe: response.data}
+         });
+    } catch (error) {
+      console.error("Error fetching full recipe info:", error.message);
+    }
+  };
 
   // store selected Recipe in state so React can re-render 
   const [selectedRecipe, setSelectedRecipe] = useState(null);
@@ -43,7 +55,8 @@ const SavedRecipesCard = ({savedRecipes, onFavoritesChange}) => {
 
               {/* Add button to trigger full recipe fetch */}
               {/* Pass the recipe to the handler */}
-              <button type="button" onClick={() => handleViewRecipe(recipe)}>View Full Recipe </button>
+              <button type="button" onClick={() => handleViewRecipe(recipe)}>Preview </button>
+              <button type="button" onClick={() => makeThisRecipe(recipe)}>Make This Recipe</button>
               
             </div>
             
