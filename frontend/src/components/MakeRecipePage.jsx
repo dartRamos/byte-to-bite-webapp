@@ -1,15 +1,15 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import FavoriteButton from "./FavoriteButton";
 import "../styling/MakeRecipePage.css";
 
 function MakeRecipePage() {
   const location = useLocation();
+  const navigate = useNavigate();
   const missedIngredients = location.state?.missedIngredients;
   const usedIngredients = location.state?.usedIngredients;
   const fullRecipe = location.state?.fullRecipe;
 
-  // You can set isFavorite logic as needed
-  const isFavorite = false;
+  
 
   const usedNames = new Set(usedIngredients?.map(i => i.name?.toLowerCase()) || []);
   const missedNames = new Set(missedIngredients?.map(i => i.name?.toLowerCase()) || []);
@@ -25,6 +25,13 @@ function MakeRecipePage() {
     <div className="make-recipe-page">
       <div className="make-recipe-content">
         <div className="make-recipe-main">
+          {/* Return Button */}
+          <button
+            className="make-recipe-return-btn"
+            onClick={() => navigate(-1)}
+          >
+            &larr; Return to Search
+          </button>
           {/* Favourite button */}
           <FavoriteButton 
             fullRecipe={fullRecipe} 
@@ -50,21 +57,21 @@ function MakeRecipePage() {
 
           {/* Ingredients */}
           <div className="make-recipe-ingredients">
-            {usedIngredients?.length > 0 && (
-              <div className="your-ingredients">
-                <h3 className="make-recipe-section-title">Your Ingredients</h3>
-                <ul className="make-recipe-ingredient-list">
-                  {usedIngredients.map((ingredient, index) => (
-                    <li key={index}>{ingredient.original || ingredient.name}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
             {missedIngredients?.length > 0 && (
               <div className="shopping-list">
                 <h3 className="make-recipe-section-title">Shopping List</h3>
                 <ul className="make-recipe-ingredient-list">
                   {missedIngredients.map((ingredient, index) => (
+                    <li key={index}>{ingredient.original || ingredient.name}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {usedIngredients?.length > 0 && (
+              <div className="your-ingredients">
+                <h3 className="make-recipe-section-title">Your Ingredients</h3>
+                <ul className="make-recipe-ingredient-list">
+                  {usedIngredients.map((ingredient, index) => (
                     <li key={index}>{ingredient.original || ingredient.name}</li>
                   ))}
                 </ul>
