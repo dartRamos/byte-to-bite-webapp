@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        serif: ['Merriweather', 'serif'],
+        serif: ['Merriweather', 'serif', ''],
       },
     },
   },
