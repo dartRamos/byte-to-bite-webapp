@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   background: #fafafa;
-  position: relative; /* Add this for absolute positioning context */
+  position: relative; 
 }
 
 .make-recipe-content {
@@ -111,18 +111,17 @@
   border: 1.5px solid #e6d700;
   box-shadow: 2px 4px 16px rgba(0,0,0,0.10);
   padding: 1.2rem 1.5rem;
-  padding-top: 0.5rem; /* Decrease this value to push the title up */
+  padding-top: 0.5rem; 
   margin-bottom: 2rem;
   position: relative;
-  font-family: 'Indie Flower', 'Comic Sans MS', cursive, sans-serif; /* Handwriting style */
+  font-family: 'Indie Flower', 'Comic Sans MS', cursive, sans-serif; 
   background-size: 100% 38px;
 }
 
 .shopping-list .make-recipe-section-title {
-  color: #d7263d; /* Red ink */
+  color: #d7263d; 
   font-family: inherit;
   margin-bottom: 0.2rem; /* Decrease this to bring the first ingredient closer */
-  font-size: 1.5rem; /* Add or adjust this line for desired size */
 }
 
 .shopping-list .make-recipe-ingredient-list {
@@ -134,7 +133,7 @@
 }
 
 .shopping-list .make-recipe-ingredient-list li {
-  color: #d7263d; /* Red ink */
+  color: #d7263d; 
   font-family: inherit;
   font-size: 1.1em;
   padding-left: 0.5em;
@@ -169,7 +168,16 @@
 .make-recipe-instructions-column {
   display: flex;
   flex-direction: column;
-  gap: 2rem; /* space between instructions and substitutions */
-  flex: 2 1 0; /* or adjust as needed for your layout */
+  gap: 3rem; /* space between instructions and substitutions */
+  flex: 2 1 0; /* adjust as needed for the layout */
   min-width: 0;
 }
+
+.make-recipe-helpers {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-top: 0.5rem;
+}
+
+

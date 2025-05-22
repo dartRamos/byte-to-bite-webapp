@@ -1,0 +1,65 @@
+.countdown-timer-container {
+  border: 2px solid #4a90e2;
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  background: #f9fafd;
+  display: inline-block;
+  box-shadow: 0 1px 6px rgba(74, 144, 226, 0.06);
+  text-align: center;
+  margin-bottom: 0.1rem;
+}
+
+.countdown-timer-inputs input {
+  width: 2.2rem;
+  font-size: 0.95rem;
+  margin: 0 0.15rem;
+  padding: 0.15rem;
+  border-radius: 4px;
+  border: 1px solid #b0c4de;
+  text-align: center;
+}
+
+.countdown-timer-inputs button {
+  margin: 0 0.25rem;
+  padding: 0.25rem 0.7rem;
+  font-size: 0.95rem;
+  border-radius: 4px;
+  border: none;
+  background: #4a90e2;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.countdown-timer-inputs button:disabled {
+  background: #b0c4de;
+  cursor: not-allowed;
+}
+
+.countdown-timer-display {
+  font-size: 1.5rem;
+  font-family: 'Courier New', Courier, monospace;
+  margin-top: 0.7rem;
+  letter-spacing: 0.05em;
+}
+
+.countdown-timer-controls {
+  margin-top: 0.7em;
+}
+
+.countdown-timer-controls button {
+  margin: 0 0.3rem;
+  padding: 0.35rem 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  background: #4a90e2;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.countdown-timer-controls button:disabled {
+  background: #b0c4de;
+  cursor: not-allowed;
+}

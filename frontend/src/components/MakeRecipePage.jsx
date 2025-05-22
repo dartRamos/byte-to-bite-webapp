@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import FavoriteButton from "./FavoriteButton";
 import IngredientSubstitutions from "./IngredientSubstitutions";
 import "../styling/MakeRecipePage.css";
+import CountdownTimer from "./CountdownTimer";
 
 function MakeRecipePage() {
   const location = useLocation();
@@ -106,7 +107,10 @@ function MakeRecipePage() {
             </div>
           )}
 
-          <IngredientSubstitutions />
+          <div className="make-recipe-helpers">
+            <IngredientSubstitutions />
+            <CountdownTimer />
+          </div>
         </div>
       </div>
     </div>
