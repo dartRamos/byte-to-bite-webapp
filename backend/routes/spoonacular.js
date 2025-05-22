@@ -14,7 +14,6 @@ router.get('/RecipesByIngredients', async (req, res) => {
   try {
     const apiInstance = new Spoonacular.RecipesApi();
     const ingredients = req.query.ingredients || ""; // Get ingredients from query parameters
-    const inputIngredients = ingredients.split(',').map(ing => ing.trim().toLowerCase()); // Convert to array for comparison
     const opts = {
       number: 24, // Fetch 24 recipes
       ranking: 1, // Prioritize using more ingredients
@@ -81,5 +80,28 @@ router.get('/recipes/:id/info', async (req, res) => {
   }
 })
 
+
+// Route to get ingredient substitutions by string
+router.get('/IngredientSubstitutions', async (req, res) => {
+  const ingredientName = req.query.ingredient;
+  const apiKey = process.env.SPOONACULAR_API_KEY;
+
+  if (!ingredientName) {
+    return res.status(400).json({ error: 'Ingredient name is required' });
+  }
+
+  try {
+    const response = await axios.get('https://api.spoonacular.com/food/ingredients/substitutes', {
+      params: {
+        ingredientName,
+        apiKey
+      }
+    });
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error fetching ingredient substitutions:', error.message);
+    res.status(500).json({ error: 'Failed to fetch ingredient substitutions' });
+  }
+});
 
 module.exports = router
