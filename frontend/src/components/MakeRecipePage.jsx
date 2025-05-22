@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import FavoriteButton from "./FavoriteButton";
+import IngredientSubstitutions from "./IngredientSubstitutions";
 import "../styling/MakeRecipePage.css";
 
 function MakeRecipePage() {
@@ -30,7 +31,7 @@ function MakeRecipePage() {
             className="make-recipe-return-btn"
             onClick={() => navigate(-1)}
           >
-            &larr; Return to Search
+            &larr; Return
           </button>
           {/* Favourite button */}
           <FavoriteButton 
@@ -93,16 +94,20 @@ function MakeRecipePage() {
           )}
         </div>
 
-        {/* Instructions */}
-        {fullRecipe.instructions && (
-          <div className="make-recipe-instructions">
-            <h3 className="make-recipe-instructions-title">Instructions</h3>
-            <div
-              className="make-recipe-instructions-content"
-              dangerouslySetInnerHTML={{ __html: fullRecipe.instructions }}
-            />
-          </div>
-        )}
+        {/* Stack instructions and substitutions vertically */}
+        <div className="make-recipe-instructions-column">
+          {fullRecipe.instructions && (
+            <div className="make-recipe-instructions">
+              <h3 className="make-recipe-instructions-title">Instructions</h3>
+              <div
+                className="make-recipe-instructions-content"
+                dangerouslySetInnerHTML={{ __html: fullRecipe.instructions }}
+              />
+            </div>
+          )}
+
+          <IngredientSubstitutions />
+        </div>
       </div>
     </div>
   );

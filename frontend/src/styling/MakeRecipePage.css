@@ -165,3 +165,11 @@
 .make-recipe-return-btn:hover {
   background: #1d4ed8;
 }
+
+.make-recipe-instructions-column {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* space between instructions and substitutions */
+  flex: 2 1 0; /* or adjust as needed for your layout */
+  min-width: 0;
+}
