@@ -25,9 +25,9 @@
 }
 
 .make-recipe-main {
-  flex: 1 1 0;
-  /* Remove max-width or set a larger one if you want */
-  min-width: 0;
+  flex: 0 1 320px; 
+  min-width: 220px; 
+  max-width: 300px; 
 }
 
 .make-recipe-instructions {
@@ -36,7 +36,7 @@
   border-radius: 12px;
   padding: 2rem;
   margin-top: 0;
-  font-size: 1.5rem; /* Larger font */
+  font-size: 1.5rem; 
   line-height: 1.7;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   min-width: 0;
@@ -62,7 +62,7 @@
   object-fit: cover;
 }
 
-.make-recipe-meta {
+.make-recipe-prep-info {
   margin-bottom: 1.5rem;
   font-size: 1.1rem;
 }
@@ -107,7 +107,7 @@
       rgba(74,144,226,0.08) 38px,
       #fff9b0 38px
     );
-  border-radius: 0; /* Hard corners */
+  border-radius: 0; 
   border: 1.5px solid #e6d700;
   box-shadow: 2px 4px 16px rgba(0,0,0,0.10);
   padding: 1.2rem 1.5rem;
@@ -121,7 +121,7 @@
 .shopping-list .make-recipe-section-title {
   color: #d7263d; 
   font-family: inherit;
-  margin-bottom: 0.2rem; /* Decrease this to bring the first ingredient closer */
+  margin-bottom: 0.2rem; 
 }
 
 .shopping-list .make-recipe-ingredient-list {
@@ -137,13 +137,13 @@
   font-family: inherit;
   font-size: 1.1em;
   padding-left: 0.5em;
-  margin-bottom: 0; /* Remove margin to keep spacing consistent */
-  line-height: 32px; /* Decrease this to move text up */
-  padding-bottom: 0px; /* Remove or decrease to move text up */
+  margin-bottom: 0; 
+  line-height: 32px; 
+  padding-bottom: 0px; 
   background: transparent;
 }
 
-/* Add blue horizontal lines for the whole note */
+/* Lined paper effect */
 .shopping-list .make-recipe-ingredient-list li:last-child {
   border-bottom: none;
 }
@@ -168,8 +168,8 @@
 .make-recipe-instructions-column {
   display: flex;
   flex-direction: column;
-  gap: 3rem; /* space between instructions and substitutions */
-  flex: 2 1 0; /* adjust as needed for the layout */
+  gap: 3rem; 
+  flex: 2 1 0; 
   min-width: 0;
 }
 
@@ -178,6 +178,12 @@
   gap: 2rem;
   align-items: flex-start;
   margin-top: 0.5rem;
+}
+
+.make-recipe-helpers > * {
+  flex: 0 0 320px;
+  max-width: 320px;
+  min-width: 0;
 }
 
 
