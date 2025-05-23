@@ -3,6 +3,7 @@ import FavoriteButton from "./FavoriteButton";
 import IngredientSubstitutions from "./IngredientSubstitutions";
 import "../styling/MakeRecipePage.css";
 import CountdownTimer from "./CountdownTimer";
+import Converter from "./Converter";
 
 function MakeRecipePage() {
   const location = useLocation();
@@ -52,7 +53,7 @@ function MakeRecipePage() {
           )}
 
           {/* Time and Servings */}
-          <div className="make-recipe-meta">
+          <div className="make-recipe-prep-info">
             <p><strong>Ready in:</strong> {fullRecipe.readyInMinutes} minutes</p>
             <p><strong>Servings:</strong> {fullRecipe.servings}</p>
           </div>
@@ -110,6 +111,7 @@ function MakeRecipePage() {
           <div className="make-recipe-helpers">
             <IngredientSubstitutions />
             <CountdownTimer />
+            <Converter />
           </div>
         </div>
       </div>

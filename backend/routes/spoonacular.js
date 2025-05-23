@@ -13,7 +13,7 @@ apiKeyScheme.apiKey = process.env.SPOONACULAR_API_KEY; // hidden API key in .env
 router.get('/RecipesByIngredients', async (req, res) => {
   try {
     const apiInstance = new Spoonacular.RecipesApi();
-    const ingredients = req.query.ingredients || ""; // Get ingredients from query parameters
+    const ingredients = req.query.ingredients || ""; 
     const opts = {
       number: 24, // Fetch 24 recipes
       ranking: 1, // Prioritize using more ingredients
@@ -101,6 +101,38 @@ router.get('/IngredientSubstitutions', async (req, res) => {
   } catch (error) {
     console.error('Error fetching ingredient substitutions:', error.message);
     res.status(500).json({ error: 'Failed to fetch ingredient substitutions' });
+  }
+});
+
+// Route to get metric conversions
+router.get('/Converter', async (req, res) => {
+  const ingredientName = req.query.ingredientName || req.query.ingredient;
+  const sourceAmount = parseFloat(req.query.sourceAmount || req.query.amount);
+  const sourceUnit = req.query.sourceUnit || req.query.unit;
+  const targetUnit = req.query.targetUnit || req.query.target;
+  const apiKey = process.env.SPOONACULAR_API_KEY;
+
+  // Validate all required parameters
+  if (!ingredientName || isNaN(sourceAmount) || !sourceUnit || !targetUnit) {
+    return res.status(400).json({ 
+      error: 'ingredientName, sourceAmount, sourceUnit, and targetUnit are required' 
+    });
+  }
+
+  try {
+    const response = await axios.get('https://api.spoonacular.com/recipes/convert', {
+      params: {
+        ingredientName,
+        sourceAmount,
+        sourceUnit,
+        targetUnit,
+        apiKey
+      }
+    });
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error converting:', error.message);
+    res.status(500).json({ error: 'Failed to convert' });
   }
 });
 
