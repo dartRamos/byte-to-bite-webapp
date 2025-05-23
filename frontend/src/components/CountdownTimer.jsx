@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import '../styling/CountdownTimer.css'; // Import your CSS file
+import React, { useState, useEffect, useRef } from 'react';
+import '../styling/CountdownTimer.css';
 
 const MAX_TIMERS = 3;
 
 function CountdownTimer() {
   const [timers, setTimers] = useState([
-    { input: { hours: 0, minutes: 0, seconds: 0 }, timeRemaining: { hours: 0, minutes: 0, seconds: 0 }, isRunning: false }
+    { input: { hours: 0, minutes: 0, seconds: 0 }, timeRemaining: { hours: 0, minutes: 0, seconds: 0 }, isRunning: false, label: '' }
   ]);
+  const [labelModal, setLabelModal] = useState({ open: false, idx: null, value: '' });
+  const audioRefs = useRef([]);
 
   useEffect(() => {
     const intervalIds = timers.map((timer, idx) => {
@@ -16,6 +18,9 @@ function CountdownTimer() {
           if (i !== idx || !t.isRunning) return t;
           const totalSeconds = t.timeRemaining.hours * 3600 + t.timeRemaining.minutes * 60 + t.timeRemaining.seconds - 1;
           if (totalSeconds <= 0) {
+            if (audioRefs.current[idx]) {
+              audioRefs.current[idx].play();
+            }
             return { ...t, isRunning: false, timeRemaining: { hours: 0, minutes: 0, seconds: 0 } };
           }
           const hours = Math.floor(totalSeconds / 3600);
@@ -34,30 +39,48 @@ function CountdownTimer() {
     setTimers(prev =>
       prev.map((timer, i) =>
         i === idx
-          ? {
-              ...timer,
-              input: { ...timer.input, [name]: Math.max(0, parseInt(value) || 0) }
-            }
+          ? { ...timer, input: { ...timer.input, [name]: Math.max(0, parseInt(value) || 0) } }
           : timer
       )
     );
   };
 
+  // Open modal instead of starting timer directly
   const handleStart = idx => {
+    setLabelModal({ open: true, idx, value: timers[idx].label || '' });
+  };
+
+  // When modal is submitted
+  const handleLabelSubmit = e => {
+    e.preventDefault();
     setTimers(prev =>
       prev.map((timer, i) =>
-        i === idx
+        i === labelModal.idx
           ? {
               ...timer,
               timeRemaining: { ...timer.input },
-              isRunning: true
+              isRunning: true,
+              label: labelModal.value
             }
           : timer
       )
     );
+    setLabelModal({ open: false, idx: null, value: '' });
+  };
+
+  const handleLabelChange = e => {
+    setLabelModal(modal => ({ ...modal, value: e.target.value }));
+  };
+
+  const handleLabelCancel = () => {
+    setLabelModal({ open: false, idx: null, value: '' });
   };
 
   const handleReset = idx => {
+    if (audioRefs.current[idx]) {
+      audioRefs.current[idx].pause();
+      audioRefs.current[idx].currentTime = 0;
+    }
     setTimers(prev =>
       prev.map((timer, i) =>
         i === idx
@@ -65,7 +88,8 @@ function CountdownTimer() {
               ...timer,
               isRunning: false,
               timeRemaining: { hours: 0, minutes: 0, seconds: 0 },
-              input: { hours: 0, minutes: 0, seconds: 0 }
+              input: { hours: 0, minutes: 0, seconds: 0 },
+              label: ''
             }
           : timer
       )
@@ -76,7 +100,7 @@ function CountdownTimer() {
     if (timers.length < MAX_TIMERS) {
       setTimers([
         ...timers,
-        { input: { hours: 0, minutes: 0, seconds: 0 }, timeRemaining: { hours: 0, minutes: 0, seconds: 0 }, isRunning: false }
+        { input: { hours: 0, minutes: 0, seconds: 0 }, timeRemaining: { hours: 0, minutes: 0, seconds: 0 }, isRunning: false, label: '' }
       ]);
     }
   };
@@ -86,9 +110,14 @@ function CountdownTimer() {
   };
 
   return (
-    <div>
+    <div className="countdown-timer-wrapper">
       {timers.map((timer, idx) => (
         <div className="countdown-timer-container" key={idx}>
+          {timer.label && (
+            <div className="countdown-timer-label" style={{ fontWeight: 'bold', marginBottom: '0.5em' }}>
+              {timer.label}
+            </div>
+          )}
           <div className="countdown-timer-inputs">
             <input
               type="number"
@@ -134,21 +163,49 @@ function CountdownTimer() {
             <span>{timer.timeRemaining.minutes.toString().padStart(2, '0')}</span>:
             <span>{timer.timeRemaining.seconds.toString().padStart(2, '0')}</span>
           </div>
+          <div className="countdown-timer-controls">
+            <button onClick={handleAddTimer} disabled={timers.length >= MAX_TIMERS}>
+              Add Timer
+            </button>
+            {timers.length > 1 && (
+              <button
+                style={{ marginLeft: '0.5em' }}
+                onClick={() => handleRemoveTimer(idx)}
+              >
+                Remove Timer
+              </button>
+            )}
+          </div>
+          <audio
+            ref={el => (audioRefs.current[idx] = el)}
+            src="/alarm_wake_up.mp3"
+            preload="auto"
+            loop
+          />
         </div>
       ))}
-      <div className="countdown-timer-controls">
-        <button onClick={handleAddTimer} disabled={timers.length >= MAX_TIMERS}>
-          Add Timer
-        </button>
-        {timers.length > 1 && (
-          <button
-            style={{ marginLeft: '0.5em' }}
-            onClick={() => handleRemoveTimer(timers.length - 1)}
-          >
-            Remove Timer
-          </button>
-        )}
-      </div>
+
+      {/* Modal for label input */}
+      {labelModal.open && (
+        <div className="countdown-timer-modal-backdrop">
+          <form className="countdown-timer-modal-form" onSubmit={handleLabelSubmit}>
+            <label>
+              Enter a label for this timer:
+              <input
+                type="text"
+                value={labelModal.value}
+                onChange={handleLabelChange}
+                autoFocus
+                style={{ marginTop: '0.5em', width: '100%' }}
+              />
+            </label>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.5em' }}>
+              <button type="button" onClick={handleLabelCancel}>Cancel</button>
+              <button type="submit">Start</button>
+            </div>
+          </form>
+        </div>
+      )}
     </div>
   );
 }
