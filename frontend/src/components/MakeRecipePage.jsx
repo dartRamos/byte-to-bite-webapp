@@ -4,6 +4,8 @@ import IngredientSubstitutions from "./IngredientSubstitutions";
 import "../styling/MakeRecipePage.css";
 import CountdownTimer from "./CountdownTimer";
 import Converter from "./Converter";
+import NutritionLabelModal from "./NutritionLabelModal";
+import React from 'react';
 
 function MakeRecipePage() {
   const location = useLocation();
@@ -11,8 +13,7 @@ function MakeRecipePage() {
   const missedIngredients = location.state?.missedIngredients;
   const usedIngredients = location.state?.usedIngredients;
   const fullRecipe = location.state?.fullRecipe;
-
-  
+  const [showNutritionModal, setShowNutritionModal] = React.useState(false);
 
   const usedNames = new Set(usedIngredients?.map(i => i.name?.toLowerCase()) || []);
   const missedNames = new Set(missedIngredients?.map(i => i.name?.toLowerCase()) || []);
@@ -94,6 +95,15 @@ function MakeRecipePage() {
               </div>
             </div>
           )}
+
+          {/* Nutrition Label Button at the bottom */}
+          <button
+            className="nutrition-label-btn"
+            style={{ marginTop: "2rem" }}
+            onClick={() => setShowNutritionModal(true)}
+          >
+            View Nutrition Label
+          </button>
         </div>
 
         {/* Stack instructions and substitutions vertically */}
@@ -115,6 +125,14 @@ function MakeRecipePage() {
           </div>
         </div>
       </div>
+
+      {/* Nutrition Label Modal */}
+      {showNutritionModal && (
+        <NutritionLabelModal
+          recipeId={fullRecipe.id}
+          onClose={() => setShowNutritionModal(false)}
+        />
+      )}
     </div>
   );
 }

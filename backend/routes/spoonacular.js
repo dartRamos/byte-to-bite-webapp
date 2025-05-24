@@ -10,6 +10,9 @@ const apiKeyScheme = defaultClient.authentications['apiKeyScheme'];
 apiKeyScheme.apiKey = process.env.SPOONACULAR_API_KEY; // hidden API key in .env file
 
 
+
+
+// Route for the Ingredient Search form 
 router.get('/RecipesByIngredients', async (req, res) => {
   try {
     const apiInstance = new Spoonacular.RecipesApi();
@@ -33,6 +36,8 @@ router.get('/RecipesByIngredients', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch recipes' });
   }
 });
+
+
 
 
 
@@ -63,7 +68,9 @@ router.get('/recipesById', async (req, res) => {
   
 
 
-    // Route to get recipe info by ID
+
+
+// Route to get recipe info by ID
 router.get('/recipes/:id/info', async (req, res) => {
   const recipeId = req.params.id;
   const apiKey = process.env.SPOONACULAR_API_KEY;
@@ -79,6 +86,9 @@ router.get('/recipes/:id/info', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch recipe info' });
   }
 })
+
+
+
 
 
 // Route to get ingredient substitutions by string
@@ -103,6 +113,9 @@ router.get('/IngredientSubstitutions', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch ingredient substitutions' });
   }
 });
+
+
+
 
 // Route to get metric conversions
 router.get('/Converter', async (req, res) => {
@@ -135,5 +148,41 @@ router.get('/Converter', async (req, res) => {
     res.status(500).json({ error: 'Failed to convert' });
   }
 });
+
+
+
+
+
+// Route to get Recipe Nutrition Label
+router.get('/NutritionLabel/:id', async (req, res) => {
+  const recipeId = req.params.id;
+  const apiKey = process.env.SPOONACULAR_API_KEY;
+
+  const {
+    defaultCss = true,
+    showOptionalNutrients = false,
+    showZeroValues = false,
+    showIngredients = false
+  } = req.query;
+
+  try {
+    const response = await axios.get(`https://api.spoonacular.com/recipes/${recipeId}/nutritionLabel`, {
+      params: {
+        apiKey,
+        defaultCss,
+        showOptionalNutrients,
+        showZeroValues,
+        showIngredients
+      },
+      responseType: 'text' // HTML is returned as text
+    });
+
+    res.set('Content-Type', 'text/html');
+    res.send(response.data);
+  } catch (error) {
+    console.error('Error fetching Nutrition Label', error.message);
+    res.status(500).json({ error: 'Failed to fetch Nutrition Label' });
+  }
+})
 
 module.exports = router
