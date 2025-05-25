@@ -32,13 +32,13 @@ const NutritionLabelModal = ({ recipeId, onClose }) => {
   };
 
   return (
-    <div className="modal-overlay" onClick={handleOverlayClick}>
-      <div className="modal-content" ref={contentRef}>
-        <button onClick={onClose} className="modal-close-btn">
+    <div className="nutrition-modal-overlay" onClick={handleOverlayClick}>
+      <div className="nutrition-modal-content" ref={contentRef}>
+        <button onClick={onClose} className="nutrition-modal-close-btn">
           <X size={40} />
         </button>
-        {loading && <p>Loading...</p>}
-        {error && <p style={{color: "red"}}>{error}</p>}
+        {loading && <p className="nutrition-text-center">Loading...</p>}
+        {error && <p className="nutrition-text-center" style={{color: "red"}}>{error}</p>}
         {!loading && !error && (
           <div dangerouslySetInnerHTML={{ __html: labelHtml }} />
         )}

@@ -3,12 +3,12 @@
   border: none;
   cursor: pointer;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  gap: 8px; /* space between text and icon */
+  gap: 8px; /* space between icon and text */
   font-weight: bold;
   font-size: 1rem;
-  color: #333;
-  padding: 8px 12px;
+  color: #666;
   border-radius: 6px;
   transition: background-color 0.3s ease;
 }
@@ -18,13 +18,15 @@
 }
 
 .fav-icon {
+  width: 20px;
+  height: 20px;
   transition: fill 0.3s ease, stroke 0.3s ease;
   stroke-width: 2;
 }
 
 .fav-icon.favorited {
-  fill: red;
-  stroke: red;
+  fill: #ff6659;   /* Slightly darker soft red */
+  stroke: #ff6659; /* Slightly darker soft red */
 }
 
 /* Tooltip */
