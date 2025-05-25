@@ -47,11 +47,9 @@ function RecipeCard({ recipe }) {
   return (
     <div className="recipe-card">
       <div className="card-content">
-        
         {/* Recipe Title */}
         <div className="recipe-title">
-          <FavoriteButton fullRecipe={recipe} />
-          <strong>{recipe?.title}</strong>
+          {recipe?.title}
         </div>
         {/* Recipe Image */}
         <div className="recipe-image">
@@ -61,10 +59,15 @@ function RecipeCard({ recipe }) {
             className="recipe-img"
           />
         </div>
+        {/* Favorite Button under image */}
+        <div className="favorite-container">
+          <FavoriteButton fullRecipe={recipe} />
+          <span className="save-text">save this recipe</span>
+        </div>
         {/* Ingredients */}
         {recipe?.usedIngredients?.length > 0 && (
           <div className="ingredients">
-            <strong>Ingredients Used:</strong>
+            <span className="ingredients-title">Ingredients From Home:</span>
             <ul className="ingredient-list">
               {recipe.usedIngredients.map((ingredient, i) => (
                 <li key={i}>{ingredient.name}</li>
