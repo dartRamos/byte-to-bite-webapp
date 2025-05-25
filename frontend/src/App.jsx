@@ -10,7 +10,7 @@ import { FavoritesProvider } from "./context/FavoritesContext";
 const App = () => {
   return (
     <FavoritesProvider>
-      <Nav /> 
+      <Nav />
       <Routes>
         <Route path="/" element={<Fridge />} />
         <Route path="/search" element={<SearchPage />} />

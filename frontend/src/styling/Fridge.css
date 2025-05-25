@@ -25,3 +25,19 @@
   margin-top: -9rem;
   transition: transform 0.3s ease;
 }
+
+.recipe-overlay-image {
+  position: absolute;
+  width: 8vw;         /* size relative to viewport width */
+  max-width: 80px;    /* max size in px for bigger screens */
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.recipe-overlay-image:hover {
+  transform: scale(1.1);
+  z-index: 10;
+}
