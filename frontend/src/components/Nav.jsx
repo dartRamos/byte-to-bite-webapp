@@ -1,13 +1,14 @@
 import React, {useState} from 'react'
 import { NavLink } from 'react-router-dom'
 import '../styling/Nav.css'
+import logo from "../assets/logo2.png"
 
 const Nav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <nav>
-      <p className='logo'>*Logo Here*</p>
+      <img src={logo} className='logo' />
       <div className='menu' onClick={() => {
         setMenuOpen(!menuOpen);
       }}>
