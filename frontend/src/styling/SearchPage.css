@@ -5,7 +5,7 @@
 
 .ingredient-form-sidebar {
   width: 30%;
-  background: #f3f4f6;
+  background: #e8eced;
   padding: 1rem;
   border-right: 4px solid #9ca3af;
   box-sizing: border-box;
@@ -17,4 +17,6 @@
   width: 80%;
   padding: 1rem;
   box-sizing: border-box;
+  background: #ada69a; 
+  color: #f3f4f6;      
 }

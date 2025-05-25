@@ -1,4 +1,10 @@
-body {
-  background-color: beige;
+html, body, #root {
+  height: 100%;
   margin: 0;
+  padding: 0;
+}
+
+.SearchPage {
+  display: flex;
+  height: 100vh; /* or 100% if parents are set */
 }
