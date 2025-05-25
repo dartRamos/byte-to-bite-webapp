@@ -1,0 +1,18 @@
+.speech-bubble {
+  position: absolute;
+  top: 10vh;
+  left: 13vw;
+  width: 24vw; 
+  max-width: 600px;
+  z-index: 5;
+  pointer-events: auto;
+}
+
+/* Adjust for smaller screens */
+/* @media (max-width: 768px) {
+  .speech-bubble {
+    top: 15vh;
+    left: 10vw;
+    width: 40vw;
+  }
+} */

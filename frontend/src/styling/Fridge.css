@@ -1,42 +1,27 @@
-.fridge-container {
+.fridge-page {
+  height: 100vh;
+  width: 100vw;
+  background-image: url('../assets/kitchen.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 5rem;
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  background-repeat: no-repeat;
-  background-size: cover;
+  position: relative;
 }
 
-.fridge-wrapper {
-  width: 100%;
-  height: 100%;
+.fridge-link {
+  cursor: pointer;
 }
 
 .fridge-image {
-  width: 100%;
-  max-width: 2400px;
-  height: auto;
-  display: block;
-  margin: 0 auto; /* Centers the image */
-}
-
-.fridge-search-button {
-  position: absolute;
-  top: 34.5%; /* Adjust to position the shape */
-  left: 50%; /* Adjust to position the shape */
-  transform: translate(-50%, -50%);
-  width: 310px; /* Adjust size */
-  height: 280px; /* Adjust size */
-  background-color: rgba(255, 255, 255, 0); /* Fully transparent */
-  border-radius: 0%; 
-  cursor: pointer;
-  border: 2px solid transparent;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none; /* Remove underline if text is added */
-}
-
-.fridge-button:hover {
-  background-color: rgba(255, 255, 255, 0.8); /* Change color on hover */
+  position: relative;
+  margin-left: -1vw;
+  max-height: 110vh;
+  height: 105vh;
+  margin-top: -8rem;
+  transition: transform 0.3s ease;
 }

@@ -1,23 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import fridge from '../assets/fridge.png';
-import kitchen from '../assets/kitchen.png';
+import { motion } from 'framer-motion';
+import fridge from '../assets/fridgefinal.png';
 import '../styling/Fridge.css';
+import SpeechBubble from './SpeechBubble';
 
 function Fridge() {
   return (
-    <div 
-      className="fridge-container"
-      style={{ backgroundImage: `url(${kitchen})`}}
-    >
-      <div className="fridge-wrapper">
-        <img src={fridge} alt="Fridge" className="fridge-image" />
-        {/* Clickable shape */}
-        <Link to="/search" className="fridge-search-button">
-        </Link>
-      </div>
+    <div className="fridge-page">
+      <Link to="/search" className="fridge-link">
+      <motion.img
+        src={fridge}
+        alt="Fridge"
+        className="fridge-image"
+        animate={{ rotate: 0 }}
+        whileHover={{
+          rotate: [0, -4, 4, -2, 2, 0],
+          transition: {
+            duration: 1.5,
+            repeat: Infinity,
+            repeatType: "loop",
+            ease: "easeInOut"
+          },
+        }}
+      />
+      </Link>
+      <SpeechBubble />
     </div>
   );
 }
 
-export default Fridge;
+export default Fridge;  
