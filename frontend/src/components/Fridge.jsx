@@ -26,6 +26,7 @@ function Fridge() {
       />
       </Link>
       <SpeechBubble />
+      
     </div>
   );
 }
