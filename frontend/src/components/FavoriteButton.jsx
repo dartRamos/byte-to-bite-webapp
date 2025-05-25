@@ -16,7 +16,7 @@ const FavoriteButton = ({ fullRecipe }) => {
   };
 
   return (
-    <div>
+    <div className="favorite-button-row">
       <div className="tooltip-wrapper">
         <button
           className='fav-button'
@@ -26,7 +26,6 @@ const FavoriteButton = ({ fullRecipe }) => {
             size={36}
             className={`fav-icon ${favorited ? 'favorited' : ''}`}
           />
-          {!favorited && <span className="tooltip-text">Save this recipe</span>}
         </button>
       </div>
     </div>
