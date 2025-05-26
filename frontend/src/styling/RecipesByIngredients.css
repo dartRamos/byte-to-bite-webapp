@@ -42,3 +42,10 @@
 .pagination-btn:hover {
   background: #359dc0;
 }
+
+.empty-message {
+  color: #666;
+  margin-top: 1.6rem;
+  font-size: 1.1rem;
+  text-align: center;
+}
