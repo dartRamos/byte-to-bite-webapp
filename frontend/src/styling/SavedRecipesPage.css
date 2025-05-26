@@ -15,11 +15,11 @@ body {
   padding: 24px;
   background-color: #AFDEEF;
   min-height: 100vh;
-  border-left: 4px solid #9DD6EA;   /* left border */
-  border-right: 4px solid #9DD6EA;  /* right border */
+  border-left: 4px solid #69A5BC;   
+  border-right: 4px solid #69A5BC;  
   border-top: none;
   border-bottom: none;
-  border-radius: 0;                 /* no rounded corners */
+  border-radius: 0;                 
 }
 .saved-recipe-header {
   font-family: "Alpha Fridge Magnets", Arial, Helvetica, sans-serif;

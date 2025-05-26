@@ -65,11 +65,14 @@
 }
 
 .countdown-timer-wrapper {
-  max-height: 320px; /* or whatever fits your design */
-  overflow-y: auto;
-  min-width: 320px;
+  max-width: 400px;    
+  min-width: 320px;    
   width: 100%;
   box-sizing: border-box;
+  border-radius: 12px; 
+  padding: 1.5rem;     
+  background: #f9fafd; 
+  box-shadow: 2px 4px 16px rgba(0,0,0,0.08); 
 }
 
 .countdown-timer-modal-backdrop {
