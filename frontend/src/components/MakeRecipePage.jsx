@@ -38,11 +38,7 @@ function MakeRecipePage() {
           >
             &larr; Return
           </button>
-          {/* Favourite button */}
-          <FavoriteButton 
-            fullRecipe={fullRecipe} 
-          />
-
+          <div className="recipe-summary-card">
           {/* Title */}
           <h1 className="make-recipe-title">{fullRecipe.title}</h1>
 
@@ -54,6 +50,11 @@ function MakeRecipePage() {
               className="make-recipe-image"
             />
           )}
+
+          {/* Favourite button */}
+          <FavoriteButton 
+            fullRecipe={fullRecipe} 
+          />
 
           {/* Time and Servings */}
           <div className="make-recipe-prep-info">
@@ -75,7 +76,9 @@ function MakeRecipePage() {
             )}
             {usedIngredients?.length > 0 && (
               <div className="your-ingredients">
-                <h3 className="make-recipe-section-title">Your Ingredients</h3>
+                <div>
+                  <span className="your-ingredients-title">Your Ingredients</span>
+                </div>
                 <ul className="make-recipe-ingredient-list">
                   {usedIngredients.map((ingredient, index) => (
                     <li key={index}>{ingredient.original || ingredient.name}</li>
@@ -83,21 +86,18 @@ function MakeRecipePage() {
                 </ul>
               </div>
             )}
-          </div>
-     
-          {remainingIngredients.length > 0 && (
-            <div className="make-recipe-ingredients">
+            {remainingIngredients.length > 0 && (
               <div className="other-ingredients">
-                <h3 className="make-recipe-section-title"> Pantry Ingredients</h3>
+                <span className="other-ingredients-title">Pantry Ingredients</span>
                 <ul className="make-recipe-ingredient-list">
                   {remainingIngredients.map((ingredient, index) => (
                     <li key={index}>{ingredient.original}</li>
                   ))}
                 </ul>
               </div>
-            </div>
-          )}
-
+            )}
+          </div>
+        </div>
           {/* Recipe Helper Buttons */}
           <div className="recipe-helper-buttons">
             {/* Nutrition Label Button at the bottom */}
@@ -134,14 +134,28 @@ function MakeRecipePage() {
           {fullRecipe.instructions && (
             <div className="make-recipe-instructions">
               <h3 className="make-recipe-instructions-title">Instructions</h3>
-              <div
-                className="make-recipe-instructions-content"
-                dangerouslySetInnerHTML={{ __html: fullRecipe.instructions }}
-              />
+              {fullRecipe.analyzedInstructions?.length > 0 &&
+               fullRecipe.analyzedInstructions[0].steps?.length > 0 ? (
+                <ul className="make-recipe-instructions-content">
+                  {fullRecipe.analyzedInstructions[0].steps.map((step, idx) => (
+                    <li key={idx}>{step.step}</li>
+                  ))}
+                </ul>
+              ) : (
+                <ul className="make-recipe-instructions-content">
+                  {fullRecipe.instructions
+                    .split(/\. |\n/)
+                    .filter(s => s.trim().length > 0)
+                    .map((step, idx) => (
+                      <li key={idx}>{step.trim()}</li>
+                    ))}
+                </ul>
+              )}
             </div>
           )}
 
-          <div className="make-recipe-timer-container">
+          <div className="timer-container">
+            <h4 className="kitchen-timer">Kitchen Timers:</h4>
             <CountdownTimer />
           </div>
         </div>
