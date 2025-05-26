@@ -14,6 +14,8 @@ function MakeRecipePage() {
   const usedIngredients = location.state?.usedIngredients;
   const fullRecipe = location.state?.fullRecipe;
   const [showNutritionModal, setShowNutritionModal] = React.useState(false);
+  const [showConverterModal, setShowConverterModal] = React.useState(false);
+  const [showSubstitutionsModal, setShowSubstitutionsModal] = React.useState(false); // <-- Add this line
 
   const usedNames = new Set(usedIngredients?.map(i => i.name?.toLowerCase()) || []);
   const missedNames = new Set(missedIngredients?.map(i => i.name?.toLowerCase()) || []);
@@ -96,14 +98,35 @@ function MakeRecipePage() {
             </div>
           )}
 
-          {/* Nutrition Label Button at the bottom */}
-          <button
-            className="nutrition-label-btn"
-            style={{ marginTop: "2rem" }}
-            onClick={() => setShowNutritionModal(true)}
-          >
-            View Nutrition Label
-          </button>
+          {/* Recipe Helper Buttons */}
+          <div className="recipe-helper-buttons">
+            {/* Nutrition Label Button at the bottom */}
+            <button
+              className="nutrition-label-btn"
+              style={{ marginTop: "2rem" }}
+              onClick={() => setShowNutritionModal(true)}
+            >
+              View Nutrition Label
+            </button>
+
+            {/* Substitutions Button */}
+            <button
+              className="substitutions-btn"
+              style={{ marginTop: "1rem" }}
+              onClick={() => setShowSubstitutionsModal(true)}
+            >
+              Find Ingredient Substitutions
+            </button>
+
+            {/* Converter Button */}
+            <button
+              className="converter-btn"
+              style={{ marginTop: "1rem" }}
+              onClick={() => setShowConverterModal(true)}
+            >
+              Convert Measuring Units
+            </button>
+          </div>
         </div>
 
         {/* Stack instructions and substitutions vertically */}
@@ -118,10 +141,8 @@ function MakeRecipePage() {
             </div>
           )}
 
-          <div className="make-recipe-helpers">
-            <IngredientSubstitutions />
+          <div className="make-recipe-timer-container">
             <CountdownTimer />
-            <Converter />
           </div>
         </div>
       </div>
@@ -133,6 +154,18 @@ function MakeRecipePage() {
           onClose={() => setShowNutritionModal(false)}
         />
       )}
+
+      {/* Substitutions Modal */}
+      <IngredientSubstitutions
+        isOpen={showSubstitutionsModal}
+        onClose={() => setShowSubstitutionsModal(false)}
+      />
+
+      {/* Converter Modal */}
+      <Converter
+        isOpen={showConverterModal}
+        onClose={() => setShowConverterModal(false)}
+      />
     </div>
   );
 }

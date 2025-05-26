@@ -11,7 +11,7 @@
 
 .make-recipe-content {
   background: #fff;
-  padding: 2rem 2.5rem;
+  padding: 4rem 2.5rem;
   padding-top: 4rem;
   border-radius: 16px;
   box-shadow: 0 4px 24px rgba(0,0,0,0.08);
@@ -149,7 +149,7 @@
 }
 
 .make-recipe-return-btn {
-  background: #2563eb;
+  background: #8BD0E8;
   color: #fff;
   padding: 0.5rem 1.25rem;
   border-radius: 0.375rem;
@@ -162,7 +162,7 @@
   display: inline-block;
 }
 .make-recipe-return-btn:hover {
-  background: #1d4ed8;
+  background: #359dc0;
 }
 
 .make-recipe-instructions-column {
@@ -173,22 +173,11 @@
   min-width: 0;
 }
 
-.make-recipe-helpers {
-  display: flex;
-  gap: 2rem;
-  align-items: flex-start;
-  margin-top: 0.5rem;
-}
 
-.make-recipe-helpers > * {
-  flex: 0 0 320px;
-  max-width: 320px;
-  min-width: 0;
-}
 
 .nutrition-label-btn {
-  background: #4caf50;
-  color: white;
+  background: #a5d6a7; 
+  color: #205522;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 6px;
@@ -197,7 +186,81 @@
   transition: background 0.2s;
 }
 .nutrition-label-btn:hover {
-  background: #388e3c;
+  background: #81c784; 
 }
+
+.converter-btn {
+  background: #90caf9; 
+  color: #17426a;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.converter-btn:hover {
+  background: #64b5f6; 
+}
+
+.substitutions-btn {
+  background: #e1bee7; 
+  color: #5e3570;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.substitutions-btn:hover {
+  background: #ce93d8; 
+}
+
+.recipe-helper-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 2rem;
+  align-items: stretch; 
+}
+
+.recipe-helper-buttons button {
+  width: 100%;
+  min-width: 200px;      
+  max-width: 300px;      
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;        /* Center the button if container is wider */
+}
+
+.countdown-timer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.count-down-timer-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+  overflow-x: auto; /* Allow horizontal scroll if overflow */
+}
+
+.count-down-timer-wrapper > * {
+  flex-shrink: 0; /* Prevent shrinking unless necessary */
+  min-width: 120px; /* Set your timer's minimum width */
+}
+
+
+
+
 
 
