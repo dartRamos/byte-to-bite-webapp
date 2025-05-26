@@ -1,0 +1,59 @@
+.about-page-container {
+  margin: 45px auto 0;
+  max-width: 1100px;
+  align-items: center;
+
+  padding: 32px 24px;
+  background-color: #fffde7; 
+  min-height: 80vh;
+  border-radius: 24px;
+  border: 2px solid #fbc02d;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+  font-family: "Roboto", sans-serif;
+  animation: fadeIn 1s ease forwards;
+  opacity: 0;
+}
+
+.about-page-title {
+  color: #ff7043; 
+  text-align: center;
+  font-weight: 700;
+  font-size: 70px;
+  margin-bottom: 20px;
+  font-family: 'SketchPencilDemo', cursive; 
+}
+
+.about-page-text {
+  color: #333333; 
+  text-align: center;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.about-page-text p {
+  margin-bottom: 16px;
+}
+
+@keyframes glowingBorder {
+  0%, 100% {
+    border-color: #fbc02d;
+    box-shadow: 0 0 5px #fbc02d;
+  }
+  50% {
+    border-color: #ff7043;
+    box-shadow: 0 0 20px #ff7043;
+  }
+}
+
+.about-page-container {
+  animation: fadeIn 1s ease forwards, glowingBorder 4s ease-in-out infinite;
+}
+
+.emoji {
+  font-size: 1.2em;
+  margin-left: 6px;
+}
+
