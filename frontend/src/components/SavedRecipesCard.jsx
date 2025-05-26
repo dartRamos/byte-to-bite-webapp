@@ -55,7 +55,6 @@ const SavedRecipesCard = ({savedRecipes, onFavoritesChange}) => {
 
               {/* Add button to trigger full recipe fetch */}
               {/* Pass the recipe to the handler */}
-              <button type="button" onClick={() => handleViewRecipe(recipe)}>Preview </button>
               <button type="button" onClick={() => makeThisRecipe(recipe)}>Make This Recipe</button>
               
             </div>

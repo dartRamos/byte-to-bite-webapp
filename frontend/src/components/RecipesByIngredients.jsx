@@ -2,31 +2,51 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 import RecipeCard from './RecipeCard';
 import '../styling/RecipesByIngredients.css';
+import fridgeImg from '../assets/fridge.png';
 
 function RecipesByIngredients(props) {
+  const [recipe, setRecipe] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [hasSearched, setHasSearched] = useState(false);
+
   useEffect(() => {
     if (props.ingredients !== "") {
-      getRecipes(props.ingredients); // setIngredients (props.ingredients)
+      getRecipes(props.ingredients);
+      setHasSearched(true);
     }
   }, [props.ingredients]);
 
-  const [recipe, setRecipe] = useState([]); // State to store multiple recipes
-  // const [ingredients, setIngredients] = useState(""); // State to store user input
-  const [currentPage, setCurrentPage] = useState(0); // State to track the current page
-
   async function getRecipes(ingredients) {
     try {
-      // Call the backend endpoint with user-provided ingredients
       const response = await axios.get('http://localhost:8080/api/spoonacular/RecipesByIngredients', {
-        params: { ingredients } // Pass ingredients as query parameters
+        params: { ingredients }
       });
-      console.log('Recipe data: ', response.data)
-      setRecipe(response.data); // Update state with all recipes
-      setCurrentPage(0); // Reset to the first page on new search
+      setRecipe(response.data);
+      setCurrentPage(0);
     } catch (error) {
       console.error('Error fetching recipes:', error);
     }
   };
+
+  if (!recipe || recipe.length === 0) {
+    return (
+      <div style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100%",
+        minHeight: "300px"
+      }}>
+        <img src={fridgeImg} alt="Empty fridge" style={{ width: "200px", opacity: 0.7 }} />
+        <p className="empty-message">
+          {hasSearched
+            ? "No recipes found"
+            : "No recipes yet. Try adding ingredients!"}
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="recipes-container">

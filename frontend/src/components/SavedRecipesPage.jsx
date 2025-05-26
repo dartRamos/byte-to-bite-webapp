@@ -31,8 +31,15 @@ const SavedRecipesPage = () => {
 
   return (
     <div className="saved-recipes-page">
-      <h1>Saved Recipes</h1>
-
+      <h1 className="saved-recipes-title">
+        <span className="letter-m">M</span>
+        <span className="letter-y">y</span>{" "}
+        <span className="letter-f">F</span>
+        <span className="letter-a">a</span>
+        <span className="letter-v">v</span>
+        <span className="letter-e">e</span>
+        <span className="letter-s">s</span>
+      </h1>
       {/* Pass recipes array as a prop */}
       <SavedRecipesCard savedRecipes={savedRecipes} onFavoritesChange={fetchSavedRecipes}/>
     </div>

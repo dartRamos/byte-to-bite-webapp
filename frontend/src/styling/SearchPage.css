@@ -1,20 +1,26 @@
 .SearchPage {
   display: flex;
-  height: -webkit-fill-available;
+  height: 100vh; /* Make the container fill the viewport */
+  min-height: 0; /* Prevent overflow issues */
 }
 
 .ingredient-form-sidebar {
   width: 30%;
-  background: #f3f4f6;
+  background: #e8eced;
   padding: 1rem;
   border-right: 4px solid #9ca3af;
   box-sizing: border-box;
   display: flex;
   align-items: flex-start;
+  height: 100%; /* Fill parent height */
 }
 
 .recipes-section {
   width: 80%;
   padding: 1rem;
   box-sizing: border-box;
+  background: #FFF; 
+  color: #f3f4f6;      
+  height: 100%; /* Fill parent height */
+  overflow-y: auto; /* Scroll if content overflows */
 }
