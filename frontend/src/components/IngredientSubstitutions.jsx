@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from 'axios';
 import '../styling/IngredientSubstitutions.css';
 
-function IngredientSubstitutions() {
+function IngredientSubstitutions({ isOpen, onClose }) {
   const [ingredient, setIngredient] = useState('');
   const [substitutions, setSubstitutions] = useState(null);
   const [error, setError] = useState(null);
@@ -31,32 +31,37 @@ function IngredientSubstitutions() {
     }
   }
 
+  if (!isOpen) return null;
+
   return (
-    <div className="ingredient-substitutions-container">
-      <h2>Ingredient Substitutions</h2>
-      <input
-        type="text"
-        value={ingredient}
-        onChange={handleInputChange}
-        placeholder="Enter ingredient"
-        className="ingredient-substitutions-input"
-      />
-      <button
-        onClick={handleFindClick}
-        disabled={ingredient.trim() === ''}
-        className="ingredient-substitutions-button"
-      >
-        Find Substitutions
-      </button>
-      {error && <p className="ingredient-substitutions-error">{error}</p>}
-      {substitutions && substitutions.substitutes && (
-        <ul className="ingredient-substitutions-list">
-          {substitutions.substitutes.map((sub, idx) => (
-            <li key={idx} className="ingredient-substitutions-list-item">{sub}</li>
-          ))}
-        </ul>
-      )}
-      {substitutions && !substitutions.substitutes && <p className="ingredient-substitutions-error">No substitutions found.</p>}
+    <div className="substitutions-modal-overlay">
+      <div className="substitutions-modal-content">
+        <button className="substitutions-modal-close" onClick={onClose}>&times;</button>
+        <h2>Ingredient Substitutions</h2>
+        <input
+          type="text"
+          value={ingredient}
+          onChange={handleInputChange}
+          placeholder="Enter ingredient"
+          className="ingredient-substitutions-input"
+        />
+        <button
+          onClick={handleFindClick}
+          disabled={ingredient.trim() === ''}
+          className="ingredient-substitutions-button"
+        >
+          Find Substitutions
+        </button>
+        {error && <p className="ingredient-substitutions-error">{error}</p>}
+        {substitutions && substitutions.substitutes && (
+          <ul className="ingredient-substitutions-list">
+            {substitutions.substitutes.map((sub, idx) => (
+              <li key={idx} className="ingredient-substitutions-list-item">{sub}</li>
+            ))}
+          </ul>
+        )}
+        {substitutions && !substitutions.substitutes && <p className="ingredient-substitutions-error">No substitutions found.</p>}
+      </div>
     </div>
   );
 }

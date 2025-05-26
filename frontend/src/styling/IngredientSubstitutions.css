@@ -10,13 +10,15 @@
       transparent 32px
     ),
     #ffe0ec;
-  border: 1px solid #ffb6c1; /* slightly darker pink */
-  border-radius: 0;
+  border: 1px solid #ffb6c1; 
+  border-radius: 12px; 
   padding: 1.5rem;
-  max-width: 400px;
+  max-width: 400px;    
+  min-width: 320px;   
+  box-sizing: border-box; 
   box-shadow: 0 2px 8px rgba(59,89,152,0.08);
   font-family: 'Segoe UI', 'Arial', sans-serif;
-  padding-bottom: 5.5rem; /* adds extra space at the bottom */
+  padding-bottom: 5.5rem; 
 }
 
 .ingredient-substitutions-container h2 {
@@ -68,4 +70,32 @@
   margin-top: 1rem;
   color: #e53e3e;
   font-weight: 500;
+}
+
+/* Substitutions Modal Styles */
+.substitutions-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.substitutions-modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  position: relative;
+  min-width: 320px;
+  max-width: 90vw;
+}
+.substitutions-modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
 }

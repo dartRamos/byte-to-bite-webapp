@@ -17,7 +17,8 @@ const unitOptions = [
   { value: 'fluid_ounces', label: 'Fluid Ounces' },
 ];
 
-function Converter () {
+// Add isOpen and onClose props for modal control
+function Converter({ isOpen, onClose }) {
   const [ingredientName, setIngredientName] = useState('');
   const [sourceAmount, setSourceAmount] = useState('');
   const [sourceUnit, setSourceUnit] = useState('');
@@ -42,58 +43,63 @@ function Converter () {
     }
   }
 
+  if (!isOpen) return null;
+
   return (
-    <div className="converter-container">
-      <h2 className="converter-title">Measurement Converter</h2>
-      <form onSubmit={getConversions}>
-        <input
-          type="text"
-          placeholder="Ingredient Name"
-          value={ingredientName}
-          onChange={e => setIngredientName(e.target.value)}
-          required
-        />
-        <div className="converter-row">
+    <div className="converter-modal-overlay">
+      <div className="converter-modal-content">
+        <button className="converter-modal-close" onClick={onClose}>&times;</button>
+        <h2 className="converter-title">Measurement Converter</h2>
+        <form onSubmit={getConversions}>
           <input
-            type="number"
-            placeholder="#"
-            value={sourceAmount}
-            onChange={e => setSourceAmount(e.target.value)}
+            type="text"
+            placeholder="Ingredient Name"
+            value={ingredientName}
+            onChange={e => setIngredientName(e.target.value)}
             required
           />
-          <span className="of-label">of</span>
+          <div className="converter-row">
+            <input
+              type="number"
+              placeholder="#"
+              value={sourceAmount}
+              onChange={e => setSourceAmount(e.target.value)}
+              required
+            />
+            <span className="of-label">of</span>
+            <Select
+              classNamePrefix="react-select"
+              options={unitOptions}
+              placeholder="Current Unit"
+              value={unitOptions.find(option => option.value === sourceUnit)}
+              onChange={option => setSourceUnit(option ? option.value : '')}
+              isClearable
+            />
+          </div>
           <Select
             classNamePrefix="react-select"
             options={unitOptions}
-            placeholder="Current Unit"
-            value={unitOptions.find(option => option.value === sourceUnit)}
-            onChange={option => setSourceUnit(option ? option.value : '')}
+            placeholder=" To New Unit"
+            value={unitOptions.find(option => option.value === targetUnit)}
+            onChange={option => setTargetUnit(option ? option.value : '')}
             isClearable
           />
-        </div>
-        <Select
-          classNamePrefix="react-select"
-          options={unitOptions}
-          placeholder=" To New Unit"
-          value={unitOptions.find(option => option.value === targetUnit)}
-          onChange={option => setTargetUnit(option ? option.value : '')}
-          isClearable
-        />
-        <button type="submit">Convert</button>
-      </form>
-      {result && (
-        <div>
-          {result.error ? (
-            <p style={{color: 'red'}}>{result.error}</p>
-          ) : (
-            <div className="converter-result">
-              <p>
-                {result.sourceAmount} {result.sourceUnit} of {result.ingredientName} is approximately {result.targetAmount} {result.targetUnit}.
-              </p>
-            </div>
-          )}
-        </div>
-      )}
+          <button type="submit">Convert</button>
+        </form>
+        {result && (
+          <div>
+            {result.error ? (
+              <p style={{color: 'red'}}>{result.error}</p>
+            ) : (
+              <div className="converter-result">
+                <p>
+                  {result.sourceAmount} {result.sourceUnit} of {result.ingredientName} is approximately {result.targetAmount} {result.targetUnit}.
+                </p>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
