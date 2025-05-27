@@ -1,21 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light+Two&display=swap');
 
-/* --- Container Styles --- */
-.converter-container {
-  background: #e6f9e6;
-  border: 1px solid #b2d8b2;
-  border-radius: 12px; 
-  padding: 1.5rem;
-  max-width: 400px;    
-  min-width: 320px;    
-  box-sizing: border-box; 
-  box-shadow: 2px 4px 16px rgba(0,0,0,0.08);
-  position: relative;
-  overflow: hidden;
+.shadows-into-light-two-regular {
+  font-family: "Shadows Into Light Two", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
 
-/* Lined paper effect */
-.converter-container::before {
+/* Converter Modal Styles */
+.converter-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.converter-modal-content {
+  /* Transfer from .converter-container */
+  background: #e6f9e6;
+  border: 2px solid #b2d8b2;
+  border-radius: 12px;
+  box-shadow: 2px 4px 16px rgba(0,0,0,0.08);
+  position: relative;
+  min-width: 380px;      
+  max-width: 450px;      
+  width: 90vw;           
+  padding: 2.5rem 3rem;  
+}
+
+
+.converter-modal-content::before {
+  /* Lined paper effect from .converter_container::before */
   content: "";
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -30,126 +46,12 @@
   pointer-events: none;
 }
 
-/* --- Typography --- */
-.converter-title {
-  text-align: center;
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin-bottom: 1.5rem;
+/* Ensure modal content children are above the lined background */
+.converter-modal-content > * {
+  position: relative;
   z-index: 1;
-  position: relative;
-  font-family: 'Covered By Your Grace', cursive, sans-serif;
-  color: #1a237e;
 }
 
-/* --- Form Layout --- */
-.converter-container form,
-.converter-container > div {
-  z-index: 1;
-  position: relative;
-}
-
-/* --- Input & Select Styles --- */
-.converter-container input,
-.converter-row input[type="number"],
-.converter-container input[type="text"] {
-  color: #1a237e;
-  background: #fff;
-  border: 1px solid #b3e0ff;
-  border-radius: 4px;
-  padding: 8px 10px;
-  font-size: 1rem;
-  box-shadow: none;
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.converter-row input[type="number"] {
-  max-width: 70px;
-  height: 38px;
-  flex-shrink: 0;
-}
-
-.converter-container input[type="text"] {
-  margin-bottom: 1rem; /* Adds space below the ingredient input */
-  height: 38px;
-}
-
-/* Placeholder and react-select text color */
-.converter-container input::placeholder,
-.converter-container .react-select__control,
-.converter-container .react-select__single-value,
-.converter-container .react-select__placeholder {
-  color: #1a237e;
-}
-
-/* Focus state */
-.converter-row input[type="number"]:focus,
-.converter-container input[type="text"]:focus {
-  border-color: #1a237e;
-}
-
-/* --- Row Layout --- */
-.converter-row {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
-  max-width: 100%;
-}
-
-.converter-row .react-select__control {
-  min-width: 90px;
-  flex: 1 1 0;
-}
-
-/* --- "of" Label --- */
-.of-label {
-  font-weight: bold;
-  color: #1a237e;
-  margin: 0 0.35rem;
-}
-
-/* --- Button Styles --- */
-.converter-container button {
-  display: block;
-  margin: 1rem auto 0 auto;
-  padding: 0.5rem 1.5rem;
-  background: #b3e0ff;
-  border: none;
-  border-radius: 0;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.converter-container button:hover {
-  background: #7fd0ff;
-}
-
-/* --- Result Text --- */
-.converter-container .converter-result {
-  color: #1a237e;
-}
-
-/* Converter Modal Styles */
-.converter-modal-overlay {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.5);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.converter-modal-content {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 8px;
-  position: relative;
-  min-width: 320px;
-  max-width: 90vw;
-}
 .converter-modal-close {
   position: absolute;
   top: 0.5rem;
@@ -158,4 +60,52 @@
   border: none;
   font-size: 2rem;
   cursor: pointer;
+}
+
+.converter-title {
+  font-family: "Shadows Into Light Two", cursive;
+  font-weight: 400;
+  font-size: 1.7rem;
+  margin-bottom: 1.8rem;
+  color: #2d4d2a;
+  letter-spacing: 1px;
+  text-decoration: underline;
+}
+
+.converter-input {
+  font-family: "Shadows Into Light Two", cursive;
+  color: #2d4d2a;
+  font-size: 1.3rem;
+}
+
+.converter-ingredient-input {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  padding: 0.2rem 0.5rem;
+  border: 2px solid #b2d8b2;
+  border-radius: 5px;
+  width: 120px;
+  box-sizing: border-box;
+}
+
+.converter-btn {
+  font-size: 1.15rem;
+  padding: 0.4rem 1.1rem;
+  border-radius: 6px;
+  margin-top: 1rem;
+}
+
+.converter-result {
+  font-family: "Shadows Into Light Two", cursive;
+  color: #e75480;
+  font-size: 1.3rem;
+  margin-top: 2rem;
+}
+
+.converter-number-input {
+  width: 70px;
+  border: 2px solid #b2d8b2;
+  border-radius: 5px;
+  box-sizing: border-box;
 }
