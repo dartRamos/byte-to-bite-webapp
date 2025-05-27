@@ -43,24 +43,24 @@ function IngredientSubstitutions({ isOpen, onClose }) {
           value={ingredient}
           onChange={handleInputChange}
           placeholder="Enter ingredient"
-          className="ingredient-substitutions-input"
+          className="substitutions-modal-input"
         />
         <button
           onClick={handleFindClick}
           disabled={ingredient.trim() === ''}
-          className="ingredient-substitutions-button"
+          className="substitutions-modal-button"
         >
           Find Substitutions
         </button>
-        {error && <p className="ingredient-substitutions-error">{error}</p>}
+        {error && <p className="substitutions-modal-error">{error}</p>}
         {substitutions && substitutions.substitutes && (
-          <ul className="ingredient-substitutions-list">
+          <ul className="substitutions-modal-list">
             {substitutions.substitutes.map((sub, idx) => (
-              <li key={idx} className="ingredient-substitutions-list-item">{sub}</li>
+              <li key={idx} className="substitutions-modal-list-item">{sub}</li>
             ))}
           </ul>
         )}
-        {substitutions && !substitutions.substitutes && <p className="ingredient-substitutions-error">No substitutions found.</p>}
+        {substitutions && !substitutions.substitutes && <p className="substitutions-modal-error">No substitutions found.</p>}
       </div>
     </div>
   );

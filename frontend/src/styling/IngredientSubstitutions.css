@@ -1,78 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light+Two&display=swap');
 
-.ingredient-substitutions-container {
-  background: 
-    repeating-linear-gradient(
-      to bottom,
-      #b3d1ff 0px,
-      #b3d1ff 2px,
-      transparent 2px,
-      transparent 32px
-    ),
-    #ffe0ec;
-  border: 1px solid #ffb6c1; 
-  border-radius: 12px; 
-  padding: 1.5rem;
-  max-width: 400px;    
-  min-width: 320px;   
-  box-sizing: border-box; 
-  box-shadow: 0 2px 8px rgba(59,89,152,0.08);
-  font-family: 'Segoe UI', 'Arial', sans-serif;
-  padding-bottom: 5.5rem; 
+.shadows-into-light-two-regular {
+  font-family: "Shadows Into Light Two", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
 
-.ingredient-substitutions-container h2 {
-  margin-top: 0;
-  font-size: 1.8rem;
-  color: #1a237e;
-  font-family: 'Covered By Your Grace', cursive, sans-serif;
-}
-
-.ingredient-substitutions-container input[type="text"] {
-  padding: 0.5rem;
-  border: 1px solid #3b5998;
-  border-radius: 4px;
-  margin-right: 0.5rem;
-  width: 50%;
-  font-size: 1rem;
-  color: #1a237e;
-  background: transparent;
-}
-
-.ingredient-substitutions-container button {
-  padding: 0.5rem 1rem;
-  background: #3b5998;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.2s;
-  font-family: inherit;
-}
-
-.ingredient-substitutions-container button:disabled {
-  background: #a0aec0;
-  cursor: not-allowed;
-}
-
-.ingredient-substitutions-container ul {
-  margin-top: 1rem;
-  padding-left: 1.2rem;
-}
-
-.ingredient-substitutions-container li {
-  margin-bottom: 0.5rem;
-  color: #1a237e;
-}
-
-.ingredient-substitutions-container p {
-  margin-top: 1rem;
-  color: #e53e3e;
-  font-weight: 500;
-}
-
-/* Substitutions Modal Styles */
 .substitutions-modal-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -82,14 +15,83 @@
   align-items: center;
   justify-content: center;
 }
+
 .substitutions-modal-content {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 8px;
+  background: 
+    repeating-linear-gradient(
+      to bottom,
+      #b3d1ff 0px,
+      #b3d1ff 2px,
+      transparent 2px,
+      transparent 32px
+    ),
+    #ffe0ec;
+  border: 2px solid #ffb6c1; 
+  border-radius: 12px; 
+  padding: 2rem 1.5rem 5.5rem 1.5rem;
+  min-width: 400px;    
+  max-width: 520px;    
+  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(59,89,152,0.08);
   position: relative;
-  min-width: 320px;
-  max-width: 90vw;
 }
+
+.substitutions-modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+  font-size: 1.8rem;
+  color: #1a237e;
+  font-family: "Shadows Into Light Two", cursive;
+  text-decoration: underline;
+}
+
+.substitutions-modal-input {
+  padding: 0.5rem;
+  border: 1px solid #3b5998;
+  border-radius: 4px;
+  margin-right: 0.5rem;
+  width: 50%;
+  font-size: 1.3rem;
+  color: #1a237e;
+  background: transparent;
+  font-family: "Shadows Into Light Two", cursive;
+}
+
+.substitutions-modal-button {
+  padding: 0.5rem 1rem;
+  background: #3b5998;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: "Shadows Into Light Two", cursive;
+}
+
+.substitutions-modal-button:disabled {
+  background: #a0aec0;
+  cursor: not-allowed;
+}
+
+.substitutions-modal-list {
+  margin-top: 1rem;
+  padding-left: 1.2rem;
+  font-family: "Shadows Into Light Two", cursive;
+  font-size: 1.3rem;
+  color: #e75480; 
+}
+
+.substitutions-modal-list-item {
+  margin-bottom: 0.5rem;
+}
+
+.substitutions-modal-error {
+  margin-top: 1rem;
+  color: #e53e3e;
+  font-weight: 500;
+}
+
 .substitutions-modal-close {
   position: absolute;
   top: 0.5rem;
@@ -98,4 +100,5 @@
   border: none;
   font-size: 2rem;
   cursor: pointer;
+  color: #1a237e; /* blue */
 }

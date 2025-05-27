@@ -50,8 +50,9 @@ function Converter({ isOpen, onClose }) {
       <div className="converter-modal-content">
         <button className="converter-modal-close" onClick={onClose}>&times;</button>
         <h2 className="converter-title">Measurement Converter</h2>
-        <form onSubmit={getConversions}>
+        <form className="converter-input" onSubmit={getConversions}>
           <input
+            className="converter-ingredient-input"
             type="text"
             placeholder="Ingredient Name"
             value={ingredientName}
@@ -60,6 +61,7 @@ function Converter({ isOpen, onClose }) {
           />
           <div className="converter-row">
             <input
+              className="converter-number-input"
               type="number"
               placeholder="#"
               value={sourceAmount}
@@ -84,7 +86,7 @@ function Converter({ isOpen, onClose }) {
             onChange={option => setTargetUnit(option ? option.value : '')}
             isClearable
           />
-          <button type="submit">Convert</button>
+          <button className="converter-btn" type="submit">Convert</button>
         </form>
         {result && (
           <div>
