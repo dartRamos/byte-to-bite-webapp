@@ -41,7 +41,7 @@ function RecipesByIngredients(props) {
         <img src={fridgeImg} alt="Empty fridge" style={{ width: "200px", opacity: 0.7 }} />
         <p className="empty-message">
           {hasSearched
-            ? "No recipes found"
+            ? "Loading..."
             : "No recipes yet. Try adding ingredients!"}
         </p>
       </div>
