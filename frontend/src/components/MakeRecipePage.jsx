@@ -52,9 +52,12 @@ function MakeRecipePage() {
           )}
 
           {/* Favourite button */}
-          <FavoriteButton 
-            fullRecipe={fullRecipe} 
-          />
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", justifyContent: "center", marginBottom: "0.5rem" }}>
+            <FavoriteButton fullRecipe={fullRecipe} />
+            <span style={{ fontFamily: '"Shadows Into Light Two", cursive', fontSize: "1.1rem", color: "#ff7043" }}>
+              Save this recipe
+            </span>
+          </div>
 
           {/* Time and Servings */}
           <div className="make-recipe-prep-info">
