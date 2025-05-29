@@ -66,11 +66,8 @@ router.delete('/remove-recipe', async (req, res) => {
 });
 
 router.get('/saved-recipes', async (req, res) => {
-  const userId = req.query.userId;
-
-  if (!userId) {
-    return res.status(400).json({ error: 'Missing userId' });
-  }
+  // Use the provided userId or default to 1
+  const userId = req.query.userId || 1;
 
   try {
     const savedRecipes = await getSavedRecipesByUserId(userId);
@@ -80,8 +77,6 @@ router.get('/saved-recipes', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch saved recipes' });
   }
 });
-
-
 
 
 
