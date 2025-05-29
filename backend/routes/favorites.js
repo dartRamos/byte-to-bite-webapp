@@ -1,6 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const { saveRecipeForUser, removeRecipeForUser, getSavedRecipesByUserId  } = require('../db/database');
+const { createUser } = require('../db/database'); 
+
+
+// POST /db/create-user
+router.post('/create-user', async (req, res) => {
+  try {
+    const now = new Date();
+    const newUser = await createUser({ created_at: now });
+    res.json(newUser);
+  } catch (err) {
+    console.error('Failed to create user', err);
+    res.status(500).json({ error: 'Could not create user' });
+  }
+});
 
 //POST REQUEST TO SAVE RECIPES TO THE DB
 router.post('/save-recipe', async (req, res) => {
@@ -61,12 +75,14 @@ router.get('/saved-recipes', async (req, res) => {
   try {
     const savedRecipes = await getSavedRecipesByUserId(userId);
     res.json(savedRecipes);
-    console.log(savedRecipes);
   } catch (err) {
     console.error('Error fetching saved recipes:', err);
     res.status(500).json({ error: 'Failed to fetch saved recipes' });
   }
 });
+
+
+
 
 
 
