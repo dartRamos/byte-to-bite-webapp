@@ -1,20 +1,24 @@
-const express = require('express'); // Import express
-const spoonacularRoutes = require('./routes/spoonacular'); // Route that leads to spoonacular API
-const cors = require('cors'); // Security protocol that prevents applications from different ports from accessing your info
-const morgan = require('morgan'); // Middleware for logging HTTP requests
-require('dotenv').config(); // Load environment variables
+const express = require('express');
+const spoonacularRoutes = require('./routes/spoonacular'); 
+const cors = require('cors');
+const morgan = require('morgan');
+const path = require("path")
+
+require('dotenv').config();
 const favoritesRoutes  = require('./routes/favorites')
 
 
-const app = express(); // Create an instance of express
-const PORT = process.env.PORT || 8080; // Set up a port for the backend
+const app = express(); 
+const PORT = process.env.PORT || 8080;
 
-// ------- MIDDLEWARE -------------
 app.use(morgan('dev')); 
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "../frontend/dist")))
 
-// -------- REGISTERING ROUTES -------------------
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"))
+})
 
 // Spoonacular Routes
 app.use('/api/spoonacular', spoonacularRoutes);
