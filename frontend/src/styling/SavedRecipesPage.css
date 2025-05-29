@@ -15,7 +15,9 @@
   border-right: 4px solid #69A5BC;  
   border-top: none;
   border-bottom: none;
-  border-radius: 0;                 
+  border-radius: 0;  
+  overflow-y: auto;
+  max-height: 100vh;          
 }
 .saved-recipe-header {
   font-family: "Alpha Fridge Magnets", Arial, Helvetica, sans-serif;
