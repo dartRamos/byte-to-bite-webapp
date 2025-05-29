@@ -1,9 +1,11 @@
 .SearchPage {
   display: flex;
-  height: 100vh; /* Make the container fill the viewport */
-  min-height: 0; /* Prevent overflow issues */
+  flex-direction: row;
+  height: 100vh;
+  min-height: 0;
 }
 
+/* Sidebar (form) */
 .ingredient-form-sidebar {
   width: 30%;
   background: #e8eced;
@@ -12,15 +14,53 @@
   box-sizing: border-box;
   display: flex;
   align-items: flex-start;
-  height: 100%; /* Fill parent height */
+  height: 100%;
 }
 
+/* Main content area */
 .recipes-section {
-  width: 80%;
+  width: 70%;
   padding: 1rem;
   box-sizing: border-box;
-  background: #FFF; 
-  color: #f3f4f6;      
-  height: 100%; /* Fill parent height */
-  overflow-y: auto; /* Scroll if content overflows */
+  background: #FFF;
+  color: #f3f4f6;
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* === Media Queries === */
+
+/* Tablets (768px to 1024px) */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .ingredient-form-sidebar {
+    width: 35%;
+  }
+
+  .recipes-section {
+    width: 65%;
+  }
+}
+
+/* Mobile (up to 767px) */
+@media only screen and (max-width: 767px) {
+  .SearchPage {
+    flex-direction: column;
+  }
+
+  .ingredient-form-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #9ca3af;
+    height: auto;
+    padding: 0.25rem 0.5rem; /* Tighter padding */
+    font-size: 0.8rem;        /* Smaller text */
+    line-height: 1.2;         /* Tighter line spacing */
+  }
+
+  .recipes-section {
+    width: 100%;
+    padding: 1rem;
+    flex-grow: 1;
+    overflow-y: auto;
+  }
 }

@@ -8,8 +8,8 @@ function IngredientForm({ onSubmit }) {
     "carbs",
     "dairy",
     "oils & Vinegars",
-    "sauces & Condiments",
-    "spices & Seasonings",
+    "sauces",
+    "spices",
   ];
 
   const defaultValues = categories.reduce((acc, category) => {

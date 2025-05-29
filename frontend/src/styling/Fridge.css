@@ -1,43 +1,67 @@
 .fridge-page {
-  height: 100vh;
+  position: relative;
   width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fridge-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-image: url('../assets/kitchen.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding-top: 5rem;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+  z-index: -1;
 }
 
 .fridge-link {
+  display: block;
   cursor: pointer;
 }
 
 .fridge-image {
-  position: relative;
-  margin-left: -1vw;
-  max-height: 110vh;
-  height: 105vh;
-  margin-top: -9rem;
+  height: auto;
+  width: auto;
+  max-height: 100vh;
+  min-height: 100vh;
+  max-width: 90vw;
+  object-fit: contain;
   transition: transform 0.3s ease;
 }
 
-.recipe-overlay-image {
-  position: absolute;
-  width: 8vw;         /* size relative to viewport width */
-  max-width: 80px;    /* max size in px for bigger screens */
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  object-fit: cover;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
+/* Hover effect */
 .recipe-overlay-image:hover {
   transform: scale(1.1);
   z-index: 10;
+}
+
+/* === Media Queries === */
+
+/* Tablets (768px to 1024px) */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .fridge-image {
+    max-width: 85vw;
+    transform: translateX(-3%);
+  }
+}
+
+/* Mobile (up to 767px) */
+@media only screen and (max-width: 767px) {
+  .fridge-image {
+    max-width: 100vw;
+    transform: translateX(0);
+  }
+
+  .fridge-page {
+    align-items: flex-end;
+    padding-bottom: 20px;
+  }
 }

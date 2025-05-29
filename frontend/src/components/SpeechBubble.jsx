@@ -1,5 +1,5 @@
 import React from 'react';
-import bubble from '../assets/bubble.png';
+import bubble from '../assets/bubble.png'
 import '../styling/SpeechBubble.css';
 import { motion } from 'framer-motion';
 

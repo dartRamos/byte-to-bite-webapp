@@ -1,8 +1,11 @@
 import React from "react";
 import '../styling/AboutPage.css';
 
+
 const AboutPage = () => {
   return (
+    <div className="fridge-page">
+
     <div className="about-page-container">
       <div className="about-page-title">
         <h1>About Us</h1>
@@ -26,6 +29,7 @@ const AboutPage = () => {
           <p>Let's get cooking! <span class="emoji">🍳🔥👩‍🍳</span></p>
         </div>
       </div>
+    </div>
   
   );
 };

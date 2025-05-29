@@ -2,17 +2,30 @@
   position: absolute;
   top: 10vh;
   left: 13vw;
-  width: 24vw; 
+  width: 24vw;
   max-width: 600px;
   z-index: 5;
   pointer-events: auto;
 }
 
-/* Adjust for smaller screens */
-/* @media (max-width: 768px) {
+/* === Media Queries === */
+
+/* Tablets (768px to 1024px) */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
   .speech-bubble {
-    top: 15vh;
+    top: 12vh;
     left: 10vw;
-    width: 40vw;
+    width: 35vw;
   }
-} */
+}
+
+/* Mobile (up to 767px) */
+@media only screen and (max-width: 767px) {
+  .speech-bubble {
+    top: 220px;
+    left: 0;
+    bottom: auto; /* remove bottom since top is being used */
+    transform: none;
+    width: 50vw; /* or 100% if you want it flush with the edge */
+  }
+}
