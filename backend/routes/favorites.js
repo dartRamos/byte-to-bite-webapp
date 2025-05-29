@@ -51,11 +51,15 @@ router.delete('/remove-recipe', async (req, res) => {
   }
 });
 
-// http://localhost:5173/db/saved-recipes
 router.get('/saved-recipes', async (req, res) => {
+  const userId = req.query.userId;
+
+  if (!userId) {
+    return res.status(400).json({ error: 'Missing userId' });
+  }
+
   try {
     const savedRecipes = await getSavedRecipesByUserId(userId);
-    
     res.json(savedRecipes);
     console.log(savedRecipes);
   } catch (err) {
