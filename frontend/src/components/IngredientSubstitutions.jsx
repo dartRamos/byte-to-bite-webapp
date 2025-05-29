@@ -9,7 +9,7 @@ function IngredientSubstitutions({ isOpen, onClose }) {
 
   async function getSubstitutions(ingredient) {
     try {
-      const response = await axios.get('http://localhost:8080/api/spoonacular/IngredientSubstitutions', {
+      const response = await axios.get('https://byte-to-bite-webapp.onrender.com/api/spoonacular/IngredientSubstitutions', {
         params: { ingredient }
       });
       setSubstitutions(response.data);

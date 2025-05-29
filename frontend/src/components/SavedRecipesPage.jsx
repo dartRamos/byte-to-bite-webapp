@@ -13,7 +13,7 @@ const SavedRecipesPage = () => {
     // Fetch the data from your backend
      try {
       // Send GET request to backend DB
-      const response = await axios.get(`http://localhost:8080/db/saved-recipes`);
+      const response = await axios.get(`https://byte-to-bite-webapp.onrender.com/db/saved-recipes`);
 
       // save the updated response from db in state 
       setSavedRecipes(response.data);

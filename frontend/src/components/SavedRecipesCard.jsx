@@ -9,7 +9,7 @@ const SavedRecipesCard = ({savedRecipes, onFavoritesChange}) => {
 
     const makeThisRecipe = async (recipe) => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/spoonacular/recipesById?id=${recipe.recipe_id}`);
+      const response = await axios.get(`https://byte-to-bite-webapp.onrender.com/api/spoonacular/recipesById?id=${recipe.recipe_id}`);
       navigate('/make-recipe', { state: { fullRecipe: response.data}
          });
     } catch (error) {
@@ -25,7 +25,7 @@ const SavedRecipesCard = ({savedRecipes, onFavoritesChange}) => {
   const handleViewRecipe = async (recipe) => {
     try {
       // Send GET request to backend API, passing recipe ID as a query parameter
-      const response = await axios.get(`http://localhost:8080/api/spoonacular/recipesById?id=${recipe.recipe_id}`);
+      const response = await axios.get(`https://byte-to-bite-webapp.onrender.com/api/spoonacular/recipesById?id=${recipe.recipe_id}`);
 
       // store recipe data in state *AFTER* the call
       setSelectedRecipe(response.data);

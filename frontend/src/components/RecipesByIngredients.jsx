@@ -18,7 +18,7 @@ function RecipesByIngredients(props) {
 
   async function getRecipes(ingredients) {
     try {
-      const response = await axios.get('http://localhost:8080/api/spoonacular/RecipesByIngredients', {
+      const response = await axios.get('https://byte-to-bite-webapp.onrender.com/api/spoonacular/RecipesByIngredients', {
         params: { ingredients }
       });
       setRecipe(response.data);

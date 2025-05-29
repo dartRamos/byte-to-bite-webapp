@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: bytetobite-backend
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: DB_HOST
+        fromDatabase:
+          name: byte_to_byte_webapp_db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: byte_to_byte_webapp_db
+          property: port
+      - key: DB_USER
+        fromDatabase:
+          name: byte_to_byte_webapp_db
+          property: user
+      - key: DB_PASS
+        fromDatabase:
+          name: byte_to_byte_webapp_db
+          property: password
+      - key: DB_NAME
+        fromDatabase:
+          name: byte_to_byte_webapp_db
+          property: database
+      - key: SPOONACULAR_API_KEY
+        value: cafe55c2f79b4dd3b61a5a77aa8d8a07

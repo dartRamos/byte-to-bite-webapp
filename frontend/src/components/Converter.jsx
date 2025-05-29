@@ -28,7 +28,7 @@ function Converter({ isOpen, onClose }) {
   async function getConversions(e) {
     e.preventDefault();
     try {
-      const response = await axios.get('http://localhost:8080/api/spoonacular/Converter', {
+      const response = await axios.get('https://byte-to-bite-webapp.onrender.com/api/spoonacular/Converter', {
         params: { 
           ingredientName, 
           sourceAmount, 

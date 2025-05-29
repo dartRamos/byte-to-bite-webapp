@@ -12,7 +12,7 @@ export const FavoritesProvider = ({ children }) => {
   useEffect(() => {
     const fetchFavorites = async () => {
       try {
-        const res = await axios.get("http://localhost:8080/db/saved-recipes");
+        const res = await axios.get("https://byte-to-bite-webapp.onrender.com/db/saved-recipes");
         setFavoriteIds(res.data.map(recipe => recipe.recipe_id));
       } catch (err) {
         console.error("Failed to fetch favorites", err);
@@ -24,7 +24,7 @@ export const FavoritesProvider = ({ children }) => {
   // Add favorite (and save to DB)
   const addFavorite = async (recipe) => {
     try {
-      await axios.post("http://localhost:8080/db/save-recipe", {
+      await axios.post("https://byte-to-bite-webapp.onrender.com/db/save-recipe", {
         ...recipe,
         is_favorited: true,
       });
@@ -37,7 +37,7 @@ export const FavoritesProvider = ({ children }) => {
   // Remove favorite (and remove from DB)
   const removeFavorite = async (recipeId) => {
     try {
-      await axios.delete("http://localhost:8080/db/remove-recipe", {
+      await axios.delete("https://byte-to-bite-webapp.onrender.com/db/remove-recipe", {
         data: { recipe_id: recipeId },
       });
       setFavoriteIds(prev => prev.filter(id => id !== recipeId));
