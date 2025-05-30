@@ -10,7 +10,7 @@ const NutritionLabelModal = ({ recipeId, onClose }) => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`/api/spoonacular/NutritionLabel/${recipeId}`)
+    fetch(`https://byte-to-bite-webapp.onrender.com/api/spoonacular/NutritionLabel/${recipeId}`)
       .then(res => {
         if (!res.ok) throw new Error("Failed to fetch nutrition label");
         return res.text();
