@@ -16,7 +16,7 @@ function RecipeCard({ recipe }) {
 
   const makeThisRecipe = async () => {
     try {
-      const response = await axios.get(`https://byte-to-bite-webapp.onrender.com/spoonacular/recipesById?id=${recipe.id}`);
+      const response = await axios.get(`https://byte-to-bite-webapp.onrender.com/api/spoonacular/recipesById?id=${recipe.id}`);
       navigate('/make-recipe', { state: { fullRecipe: response.data,
         usedIngredients: recipe.usedIngredients,
         missedIngredients: recipe.missedIngredients } });
